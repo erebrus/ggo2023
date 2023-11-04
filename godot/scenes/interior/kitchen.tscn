@@ -1,0 +1,160 @@
+[gd_scene load_steps=13 format=3 uid="uid://clvimopffltwn"]
+
+[ext_resource type="Environment" uid="uid://byaxvi8vi3lrq" path="res://assets/custom_resources/kitchen_environment.tres" id="2_buffd"]
+[ext_resource type="MeshLibrary" uid="uid://drxqp3hhotdb2" path="res://assets/custom_resources/kitchen_tileset.tres" id="3_5ippt"]
+[ext_resource type="PackedScene" uid="uid://ddo5eh8r5r2am" path="res://scenes/interior/cauldron.tscn" id="3_rijmp"]
+[ext_resource type="PackedScene" uid="uid://bgcje5nt6qvuq" path="res://scenes/player/player.tscn" id="4_6nlgc"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8xjdq"]
+noise_type = 3
+seed = 15
+frequency = 0.0046
+fractal_octaves = 10
+fractal_lacunarity = 8.775
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_f68ey"]
+width = 128
+height = 128
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_8xjdq")
+
+[sub_resource type="FogMaterial" id="FogMaterial_5jap7"]
+density = 1.1204
+albedo = Color(0.541176, 0.886275, 0.533333, 1)
+emission = Color(0.32549, 0.501961, 0.427451, 1)
+height_falloff = 0.285263
+edge_fade = 3.80546
+density_texture = SubResource("NoiseTexture3D_f68ey")
+
+[sub_resource type="Gradient" id="Gradient_stmjt"]
+offsets = PackedFloat32Array(0, 0.282548, 0.628809, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.509804, 1, 1, 1, 0.623529, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5cgwo"]
+gradient = SubResource("Gradient_stmjt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_je3ta"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+gravity = Vector3(0, -0.1, 0)
+color = Color(0.584314, 0.309804, 0.592157, 1)
+color_ramp = SubResource("GradientTexture1D_5cgwo")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5g76"]
+transparency = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.709804, 0.603922, 0.941176, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_b60j0"]
+material = SubResource("StandardMaterial3D_b5g76")
+radius = 0.01
+height = 0.02
+
+[node name="Kitchen" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.930417, 0.366501, 0, -0.366501, 0.930417, 2, 6.944, 14.565)
+environment = ExtResource("2_buffd")
+current = true
+fov = 70.0
+size = 10.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7, -5)
+light_color = Color(0.909804, 0.74902, 0.439216, 1)
+light_energy = 4.156
+light_volumetric_fog_energy = 0.848
+shadow_enabled = true
+omni_range = 6.864
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 7, -5)
+light_color = Color(0.909804, 0.74902, 0.439216, 1)
+light_energy = 4.156
+light_volumetric_fog_energy = 0.848
+shadow_enabled = true
+omni_range = 6.864
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 7, -5)
+light_color = Color(0.909804, 0.74902, 0.439216, 1)
+light_energy = 4.156
+light_volumetric_fog_energy = 0.848
+shadow_enabled = true
+omni_range = 6.864
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.56257, -0.399813, 4)
+size = Vector3(15.7313, 9.39127, 18.4066)
+material = SubResource("FogMaterial_5jap7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_buffd")
+
+[node name="Cauldron" parent="." instance=ExtResource("3_rijmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.989897, 0.137322, 0.0353098, 0.103011, 0.525393, 0.844601, 0.0974308, 0.839705, -0.53423, 6, 5.30941, -9.18439)
+light_color = Color(0.984314, 0.992157, 0.905882, 1)
+light_energy = 16.0
+light_indirect_energy = 1.028
+light_volumetric_fog_energy = 0.675
+shadow_enabled = true
+
+[node name="Structure" type="Node3D" parent="."]
+
+[node name="Walls" type="GridMap" parent="Structure"]
+mesh_library = ExtResource("3_5ippt")
+cell_size = Vector3(4, 8, 4)
+data = {
+"cells": PackedInt32Array(14, 65524, 655370, 3, 1, 1048578, 3, 65535, 655363, 65528, 0, 655365, 65529, 0, 655362, 65530, 0, 655365, 65531, 0, 655362, 131063, 0, 655362, 131064, 0, 655365, 131065, 0, 655362, 131066, 0, 655365, 131067, 0, 655362, 131068, 0, 655365, 131069, 65535, 1441795, 131069, 0, 1048578, 65539, 65535, 655363, 65539, 0, 1048581, 65539, 1, 1048578, 65539, 2, 1048578, 65533, 1, 1441794, 65533, 2, 3, 3, 2, 1048579, 65533, 65535, 1441795, 2, 65535, 655374, 0, 65535, 655374, 1, 65535, 655374, 65533, 0, 1441794, 131070, 65535, 2, 131071, 65535, 2, 65536, 65535, 2, 65538, 65535, 2, 65537, 65535, 2, 3, 0, 1048590, 65534, 65535, 1048587, 65535, 65535, 11, 65533, 65533, 655362, 65532, 65533, 655362, 0, 65533, 655362, 1, 65533, 655362, 2, 65533, 2, 3, 65533, 2, 4, 65533, 2, 65531, 65533, 2, 65530, 65533, 2, 65529, 65533, 2, 65528, 65533, 2, 65527, 65533, 11, 65527, 65532, 1441794, 65527, 65531, 1441794, 65527, 65530, 1441794, 65527, 65529, 1441794, 65535, 65534, 1048581, 65534, 65534, 1441797, 65535, 65533, 1441803, 65534, 65533, 655371, 131069, 1, 1048578)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Floors" type="GridMap" parent="Structure"]
+mesh_library = ExtResource("3_5ippt")
+cell_size = Vector3(4, 8, 4)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(65533, 65535, 655360, 65532, 65535, 655360, 65531, 65535, 655360, 65534, 65535, 655360, 65535, 65535, 655360, 0, 65535, 655360, 1, 65535, 655360, 2, 65535, 655360, 3, 65535, 655360, 4, 65535, 655360, 5, 65535, 655360, 6, 65535, 655360, 65531, 0, 655360, 65532, 0, 655360, 65533, 0, 655360, 65534, 0, 655360, 65535, 0, 655360, 0, 0, 655360, 1, 0, 655360, 2, 0, 655360, 3, 0, 655360, 4, 0, 655360, 5, 0, 655360, 6, 0, 655360, 65531, 1, 655360, 65532, 1, 655360, 65533, 1, 655360, 65534, 1, 655360, 65535, 1, 655360, 0, 1, 655360, 1, 1, 655360, 2, 1, 655360, 3, 1, 655360, 4, 1, 655360, 5, 1, 655360, 6, 1, 655360, 65531, 2, 655360, 65532, 2, 655360, 65533, 2, 655360, 65534, 2, 655360, 65535, 2, 655360, 0, 2, 655360, 1, 2, 655360, 2, 2, 655360, 3, 2, 655360, 4, 2, 655360, 5, 2, 655360, 6, 2, 655360, 65530, 1, 655360, 65529, 1, 655360, 65528, 1, 655360, 65530, 2, 655360, 65529, 2, 655360, 65528, 2, 655360, 131074, 0, 655360, 131073, 0, 655360, 131075, 0, 655360, 131072, 0, 655360, 196605, 0, 655360, 196606, 0, 655360, 196607, 0, 655360, 131075, 1, 655360, 131074, 1, 655360, 131073, 1, 655360, 131072, 1, 655360, 196606, 1, 655360, 196605, 1, 655360, 196607, 1, 655360, 196604, 1, 655360, 196606, 2, 655360, 196607, 2, 655360, 196605, 2, 655360, 196604, 2, 655360, 131072, 2, 655360, 131073, 2, 655360, 131074, 2, 655360, 131075, 2, 655360, 196603, 1, 0, 196603, 2, 0, 196602, 2, 0, 196602, 1, 0, 196601, 1, 0, 196600, 1, 0, 196601, 2, 0, 196600, 2, 0, 131071, 65535, 1441792, 131071, 65534, 1441792, 131070, 65535, 1441792, 131070, 65534, 1441792, 65536, 65535, 1441792, 65536, 65534, 1441792, 131071, 65533, 1441792, 65536, 65533, 1441792, 65537, 65533, 1441792, 65537, 65532, 1441792, 65538, 65533, 1441792, 65539, 65533, 1441792, 65540, 65533, 1441792, 65540, 65532, 1441792, 65539, 65532, 1441792, 65539, 65531, 1441792, 65538, 65531, 1441792, 65537, 65531, 1441792, 65536, 65531, 1441792, 131071, 65531, 1441792, 65538, 65532, 1441792, 65536, 65532, 1441792, 131071, 65532, 1441792, 131070, 65532, 1441792, 131069, 65532, 1441792, 131068, 65532, 1441792, 131069, 65533, 1441792, 131070, 65533, 1441792, 131068, 65533, 1441792, 131067, 65533, 1441792, 131066, 65533, 1441792, 131065, 65533, 1441792, 131064, 65533, 1441792, 131063, 65533, 1441792, 131064, 65532, 1441792, 131065, 65532, 1441792, 131066, 65532, 1441792, 131067, 65532, 1441792, 131068, 65531, 1441792, 131067, 65531, 1441792, 131066, 65531, 1441792, 131065, 65531, 1441792, 131069, 65531, 1441792, 131070, 65531, 1441792, 65536, 65530, 1441792, 131071, 65530, 1441792, 131070, 65530, 1441792, 65540, 65530, 1441792, 65540, 65531, 1441792, 65539, 65530, 1441792, 65538, 65530, 1441792, 65537, 65530, 1441792, 131069, 65530, 1441792, 131068, 65530, 1441792, 131067, 65530, 1441792, 131065, 65530, 1441792, 131064, 65530, 1441792, 131064, 65531, 1441792, 131066, 65530, 1441792, 131064, 65529, 1441792, 131065, 65529, 1441792, 131066, 65529, 1441792, 131067, 65529, 1441792, 131068, 65529, 1441792, 131069, 65529, 1441792, 131070, 65529, 1441792, 131071, 65529, 1441792, 65536, 65529, 1441792, 65537, 65529, 1441792, 65538, 65529, 1441792, 65539, 65529, 1441792, 65540, 65529, 1441792, 196605, 65535, 1441792, 196606, 65535, 1441792, 196606, 65534, 1441792, 196607, 65534, 1441792, 131072, 65534, 1441792, 131073, 65534, 1441792, 196607, 65535, 1441792, 131072, 65535, 1441792, 131073, 65535, 1441792, 131074, 65535, 1441792, 131075, 65535, 1441792, 131074, 65534, 1441792, 131075, 65534, 1441792, 196605, 65534, 1441792, 196604, 0, 1441792, 196603, 0, 1441792, 196602, 0, 1441792, 196601, 0, 1441792, 196600, 0, 1441792, 65535, 65534, 1048576, 65535, 65533, 1048576, 0, 65533, 1048576, 1, 65533, 1048576, 2, 65533, 1048576, 3, 65533, 1048576, 4, 65533, 1048576, 1, 65532, 1048576, 0, 65532, 1048576, 65535, 65532, 1048576, 65534, 65532, 1048576, 65533, 65532, 1048576, 65532, 65532, 1048576, 65534, 65533, 1048576, 65533, 65533, 1048576, 65532, 65533, 1048576, 65531, 65533, 1048576, 1, 65531, 1048576, 2, 65532, 1048576, 3, 65532, 1048576, 2, 65531, 1048576, 3, 65531, 1048576, 4, 65532, 1048576, 5, 65533, 1048576, 4, 65531, 1048576, 3, 65530, 1048576, 2, 65530, 1048576, 1, 65530, 1048576, 0, 65530, 1048576, 65535, 65530, 1048576, 65534, 65530, 1048576, 65534, 65531, 1048576, 65535, 65531, 1048576, 0, 65531, 1048576, 65533, 65531, 1048576, 65532, 65531, 1048576, 65531, 65531, 1048576, 65530, 65531, 1048576, 65529, 65531, 1048576, 65529, 65532, 1048576, 65530, 65532, 1048576, 65531, 65532, 1048576, 65528, 65532, 1048576, 65528, 65533, 1048576, 65527, 65533, 1048576, 65526, 65533, 1048576, 65529, 65533, 1048576, 65530, 65533, 1048576, 65527, 65532, 1048576, 65528, 65531, 1048576, 65528, 65530, 1048576, 65529, 65530, 1048576, 65530, 65530, 1048576, 65531, 65530, 1048576, 65532, 65530, 1048576, 65532, 65529, 1048576, 65533, 65529, 1048576, 65533, 65530, 1048576, 65534, 65528, 1048576, 65535, 65528, 1048576, 65535, 65529, 1048576, 65534, 65529, 1048576, 0, 65529, 1048576, 1, 65529, 1048576, 2, 65529, 1048576, 3, 65529, 1048576, 4, 65530, 1048576, 3, 65528, 1048576, 65529, 65529, 1048576, 65528, 65529, 1048576, 65530, 65529, 1048576, 65531, 65529, 1048576)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 9)
+light_color = Color(0.917647, 0.67451, 0.482353, 1)
+light_energy = 3.0
+light_indirect_energy = 3.52
+light_volumetric_fog_energy = 2.357
+shadow_enabled = true
+omni_range = 27.085
+omni_attenuation = 1.07178
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 3, 2)
+visible = false
+light_color = Color(0.917647, 0.67451, 0.482353, 1)
+light_energy = 3.0
+light_indirect_energy = 3.52
+light_volumetric_fog_energy = 2.357
+shadow_enabled = true
+omni_range = 27.085
+omni_attenuation = 1.03527
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+amount = 200
+visibility_aabb = AABB(-30, -11, -6, 60, 22, 12)
+process_material = SubResource("ParticleProcessMaterial_je3ta")
+draw_pass_1 = SubResource("SphereMesh_b60j0")
+
+[node name="Player" parent="." instance=ExtResource("4_6nlgc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 7)

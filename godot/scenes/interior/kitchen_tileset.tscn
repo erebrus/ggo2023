@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://6230mbg3apjr"]
+
+[ext_resource type="PackedScene" uid="uid://55olgr2ov0l" path="res://assets/kitchen/kitchen_tileset/kitchen_tileset.glb" id="1_7in5g"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eek2d"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ma410"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_dsj6l"]
+data = PackedVector3Array(-2, -4, 0, 2, 4, 0, -2, 4, 0, -2, -4, 0, 2, -4, 0, 2, 4, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vmjp5"]
+data = PackedVector3Array(0, -4, 0, 2, 4, 0, 0, 4, 0, 0, -4, 0, 2, -4, 0, 2, 4, 0, 0, 4, 0, 0, -4, -2, 0, -4, 0, 0, 4, 0, 0, 4, -2, 0, -4, -2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_psafx"]
+data = PackedVector3Array(0.6667, 1.3333, 0, 2, 4, 0, 0.6667, 4, 0, 0.6667, 1.3333, 0, 2, 1.3333, 0, 2, 4, 0, 0.6667, -4, 0, 2, -1.3333, 0, 0.6667, -1.3333, 0, 0.6667, -4, 0, 2, -4, 0, 2, -1.3333, 0, 0.6667, -1.3333, 0, 2, 1.3333, 0, 0.6667, 1.3333, 0, 0.6667, -1.3333, 0, 2, -1.3333, 0, 2, 1.3333, 0, -2, -1.3333, 0, -0.6667, 1.3333, 0, -2, 1.3333, 0, -2, -1.3333, 0, -0.6667, -1.3333, 0, -0.6667, 1.3333, 0, -2, -4, 0, -0.6667, -1.3333, 0, -2, -1.3333, 0, -2, -4, 0, -0.6667, -4, 0, -0.6667, -1.3333, 0, -0.6667, -4, 0, 0.6667, -1.3333, 0, -0.6667, -1.3333, 0, -0.6667, -4, 0, 0.6667, -4, 0, 0.6667, -1.3333, 0, -2, 1.3333, 0, -0.6667, 4, 0, -2, 4, 0, -2, 1.3333, 0, -0.6667, 1.3333, 0, -0.6667, 4, 0, -0.6667, 1.3333, 0, 0.6667, 4, 0, -0.6667, 4, 0, -0.6667, 1.3333, 0, 0.6667, 1.3333, 0, 0.6667, 4, 0)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_o6827"]
+data = PackedVector3Array(0, -4, 0, 2, 4, 0, 2, -4, 0, 0, -4, 0, 0, 4, 0, 2, 4, 0, 0, 4, 0, 0, -4, -2, 0, 4, -2, 0, 4, 0, 0, -4, 0, 0, -4, -2)
+
+[node name="kitchen_tileset" instance=ExtResource("1_7in5g")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_eek2d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor_Tile_2" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor_Tile_2/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_ma410")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Brick_Wall_Tile" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Brick_Wall_Tile/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_dsj6l")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Brick_Wall_RCorner_Tile" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Brick_Wall_RCorner_Tile/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_vmjp5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Brick_Wall_Window_Tile" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Brick_Wall_Window_Tile/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_psafx")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Brick_Wall_RCorner_Tile_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Brick_Wall_RCorner_Tile_001/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_o6827")

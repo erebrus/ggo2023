@@ -11,5 +11,16 @@ config_version=5
 [application]
 
 config/name="Godot"
+run/main_scene="res://scenes/interior/kitchen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
+[rendering]
+
+environment/defaults/default_clear_color=Color(0.301961, 0.301961, 0.301961, 1)
+environment/defaults/default_environment="res://assets/custom_resources/kitchen_environment.tres"
