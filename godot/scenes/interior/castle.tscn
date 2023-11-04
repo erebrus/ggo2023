@@ -1,0 +1,170 @@
+[gd_scene load_steps=20 format=3 uid="uid://bllmq4fpsx0nb"]
+
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_vln1u"]
+[ext_resource type="PackedScene" uid="uid://bgcje5nt6qvuq" path="res://scenes/player/player.tscn" id="2_ggac5"]
+[ext_resource type="Script" path="res://scenes/world/world_room.gd" id="3_w7eeh"]
+[ext_resource type="Environment" uid="uid://byaxvi8vi3lrq" path="res://assets/custom_resources/kitchen_environment.tres" id="4_l4jiw"]
+[ext_resource type="PackedScene" uid="uid://ddo5eh8r5r2am" path="res://scenes/interior/cauldron.tscn" id="5_vid1e"]
+[ext_resource type="Script" path="res://scenes/interior/room_grid.gd" id="6_ks84o"]
+[ext_resource type="MeshLibrary" uid="uid://drxqp3hhotdb2" path="res://assets/custom_resources/kitchen_tileset.tres" id="6_n3s6h"]
+[ext_resource type="PackedScene" uid="uid://c7nthqnfkovcn" path="res://scenes/world/world_camera.tscn" id="7_afucm"]
+[ext_resource type="PackedScene" uid="uid://daxani2d2ydyg" path="res://scenes/interior/castle_hallway.tscn" id="8_vxm4d"]
+[ext_resource type="PackedScene" uid="uid://bgfx4r6c0pbvg" path="res://scenes/player/player_camera.tscn" id="10_418bp"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8xjdq"]
+noise_type = 4
+seed = -140
+frequency = 0.0001
+fractal_octaves = 10
+fractal_lacunarity = 8.775
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_f68ey"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_8xjdq")
+
+[sub_resource type="FogMaterial" id="FogMaterial_5jthk"]
+density = 0.3305
+albedo = Color(0.752941, 0.819608, 0.635294, 1)
+emission = Color(0.509804, 0.458824, 0.258824, 1)
+height_falloff = 0.0540473
+edge_fade = 0.399999
+density_texture = SubResource("NoiseTexture3D_f68ey")
+
+[sub_resource type="Gradient" id="Gradient_stmjt"]
+offsets = PackedFloat32Array(0, 0.282548, 0.628809, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.509804, 1, 1, 1, 0.623529, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5cgwo"]
+gradient = SubResource("Gradient_stmjt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_je3ta"]
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+gravity = Vector3(0, -0.1, 0)
+color = Color(0.584314, 0.309804, 0.592157, 1)
+color_ramp = SubResource("GradientTexture1D_5cgwo")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5g76"]
+transparency = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(0.709804, 0.603922, 0.941176, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_b60j0"]
+material = SubResource("StandardMaterial3D_b5g76")
+radius = 0.01
+height = 0.02
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5b71l"]
+size = Vector3(22, 9, 20)
+
+[node name="World" type="Node3D" node_paths=PackedStringArray("starting_room")]
+script = ExtResource("1_vln1u")
+starting_room = NodePath("Kitchen")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.989897, 0.137322, 0.0353094, 0.103011, 0.525393, 0.844601, 0.0974308, 0.839705, -0.534231, 6, 5.30941, -9.18439)
+visible = false
+light_color = Color(0.984314, 0.992157, 0.905882, 1)
+light_energy = 16.0
+light_indirect_energy = 1.028
+light_volumetric_fog_energy = 0.675
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_ggac5")]
+process_priority = -10
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4)
+
+[node name="Kitchen" type="Node3D" parent="." groups=["Room"]]
+script = ExtResource("3_w7eeh")
+
+[node name="CauldronFog" type="FogVolume" parent="Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06257, 0.600187, 5.5)
+size = Vector3(17.5, 8.5, 16.5)
+shape = 1
+material = SubResource("FogMaterial_5jthk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Kitchen"]
+environment = ExtResource("4_l4jiw")
+
+[node name="Cauldron" parent="Kitchen" instance=ExtResource("5_vid1e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 6)
+
+[node name="GridMaps" type="Node3D" parent="Kitchen"]
+script = ExtResource("6_ks84o")
+
+[node name="Walls" type="GridMap" parent="Kitchen/GridMaps" groups=["HideOnExit"]]
+mesh_library = ExtResource("6_n3s6h")
+cell_size = Vector3(4, 8, 4)
+data = {
+"cells": PackedInt32Array(14, 65524, 655370, 3, 1, 1048578, 3, 65535, 655363, 131063, 0, 655362, 131064, 0, 655365, 131065, 0, 655362, 131066, 0, 655365, 131067, 0, 655362, 131068, 0, 655365, 131069, 65535, 1441795, 131069, 0, 1048578, 65539, 65535, 655363, 65539, 0, 1048581, 65539, 1, 1048578, 65539, 2, 1048578, 65533, 1, 1441794, 65533, 65535, 1441795, 2, 65535, 655374, 0, 65535, 655374, 1, 65535, 655374, 65533, 0, 1441794, 131070, 65535, 2, 131071, 65535, 2, 65536, 65535, 2, 65538, 65535, 2, 65537, 65535, 2, 3, 0, 1048590, 131069, 1, 1048578, 65534, 65535, 1441803, 65535, 65535, 655371, 65533, 2, 1441794, 65533, 3, 3, 3, 3, 1048579, 3, 2, 1048578)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Floors" type="GridMap" parent="Kitchen/GridMaps"]
+mesh_library = ExtResource("6_n3s6h")
+cell_size = Vector3(4, 8, 4)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(65534, 0, 655360, 65535, 0, 655360, 0, 0, 655360, 1, 0, 655360, 2, 0, 655360, 3, 0, 655360, 65534, 1, 655360, 65535, 1, 655360, 0, 1, 655360, 1, 1, 655360, 2, 1, 655360, 3, 1, 655360, 65534, 2, 655360, 65535, 2, 655360, 0, 2, 655360, 1, 2, 655360, 2, 2, 655360, 3, 2, 655360, 131074, 0, 655360, 131073, 0, 655360, 131075, 0, 655360, 131072, 0, 655360, 196605, 0, 655360, 196606, 0, 655360, 196607, 0, 655360, 131075, 1, 655360, 131074, 1, 655360, 131073, 1, 655360, 131072, 1, 655360, 196606, 1, 655360, 196605, 1, 655360, 196607, 1, 655360, 196604, 1, 655360, 196606, 2, 655360, 196607, 2, 655360, 196605, 2, 655360, 196604, 2, 655360, 131072, 2, 655360, 131073, 2, 655360, 131074, 2, 655360, 131075, 2, 655360, 196603, 1, 0, 196603, 2, 0, 196602, 2, 0, 196602, 1, 0, 196601, 1, 0, 196600, 1, 0, 196601, 2, 0, 196600, 2, 0, 131071, 65535, 1441792, 131070, 65535, 1441792, 65536, 65535, 1441792, 196605, 65535, 1441792, 196606, 65535, 1441792, 196606, 65534, 1441792, 196607, 65534, 1441792, 131072, 65534, 1441792, 131073, 65534, 1441792, 196607, 65535, 1441792, 131072, 65535, 1441792, 131073, 65535, 1441792, 131074, 65535, 1441792, 131075, 65535, 1441792, 131074, 65534, 1441792, 131075, 65534, 1441792, 196605, 65534, 1441792, 196604, 0, 1441792, 196603, 0, 1441792, 196602, 0, 1441792, 196601, 0, 1441792, 196600, 0, 1441792, 0, 3, 655360, 1, 3, 655360, 2, 3, 655360, 65535, 3, 655360, 65534, 3, 655360, 3, 3, 655360, 131070, 0, 1441792, 131071, 0, 1441792, 65536, 0, 1441792, 65537, 0, 1441792, 65538, 0, 1441792, 65539, 0, 1441792, 65538, 1, 1441792, 65539, 1, 1441792, 65537, 1, 1441792, 65536, 1, 1441792, 131071, 1, 1441792, 131070, 1, 1441792, 131069, 1, 1441792, 131070, 2, 1441792, 131071, 2, 1441792, 65536, 2, 1441792, 65537, 2, 1441792, 65538, 2, 1441792, 65539, 2, 1441792, 65539, 3, 1441792, 65538, 3, 1441792, 65537, 3, 1441792, 65536, 3, 1441792, 131071, 3, 1441792, 131070, 3, 1441792)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="HideableWalls" type="GridMap" parent="Kitchen/GridMaps" groups=["HideOnEnter", "HideOnExit"]]
+mesh_library = ExtResource("6_n3s6h")
+cell_size = Vector3(4, 8, 4)
+data = {
+"cells": PackedInt32Array(65534, 3, 2, 65535, 3, 2, 0, 3, 2, 1, 3, 2, 2, 3, 2)
+}
+
+[node name="CauldronLight" type="OmniLight3D" parent="Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 6)
+light_color = Color(0.898039, 0.690196, 0.454902, 1)
+light_energy = 4.5
+light_indirect_energy = 3.06
+light_volumetric_fog_energy = 10.358
+light_size = 0.389
+shadow_enabled = true
+omni_range = 9.938
+omni_attenuation = 0.210226
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+amount = 200
+visibility_aabb = AABB(-30, -11, -6, 60, 22, 12)
+process_material = SubResource("ParticleProcessMaterial_je3ta")
+draw_pass_1 = SubResource("SphereMesh_b60j0")
+
+[node name="KitchenCamera" parent="Kitchen" groups=["Camera"] instance=ExtResource("7_afucm")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2, 6, 16)
+current = true
+environment = ExtResource("4_l4jiw")
+
+[node name="KitchenArea3D" type="Area3D" parent="Kitchen"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Kitchen/KitchenArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2.5)
+shape = SubResource("BoxShape3D_5b71l")
+
+[node name="Spawn" type="Node3D" parent="Kitchen" groups=["Spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0.5, 6)
+
+[node name="CastleHallway" parent="." instance=ExtResource("8_vxm4d")]
+
+[node name="WizardRoom" type="Node3D" parent="." groups=["Room"]]
+
+[node name="Outside" type="Node3D" parent="."]
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("10_418bp")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2, 5, 14)
+player = NodePath("../Player")
+max_speed = 9
+move_delay = 0.5

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgfx4r6c0pbvg"]
+
+[ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="1_yfamo"]
+
+[node name="PlayerCamera" type="Node3D"]
+script = ExtResource("1_yfamo")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+current = true
+fov = 70.0

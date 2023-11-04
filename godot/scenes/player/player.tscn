@@ -7,12 +7,11 @@
 radius = 1.00917
 height = 4.20519
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_nja4j")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2.27157, 0)
-shaded = true
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("2_71xhw")

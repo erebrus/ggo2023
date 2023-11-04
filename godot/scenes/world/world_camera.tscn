@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7nthqnfkovcn"]
+
+[ext_resource type="Script" path="res://scenes/interior/room_camera.gd" id="1_yxaf7"]
+[ext_resource type="Environment" uid="uid://byaxvi8vi3lrq" path="res://assets/custom_resources/kitchen_environment.tres" id="2_ly2xu"]
+
+[node name="CameraPivot" type="Node3D"]
+script = ExtResource("1_yxaf7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+environment = ExtResource("2_ly2xu")
+fov = 70.0

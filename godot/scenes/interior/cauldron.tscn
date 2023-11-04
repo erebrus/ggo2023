@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ddo5eh8r5r2am"]
+[gd_scene load_steps=20 format=3 uid="uid://ddo5eh8r5r2am"]
 
 [ext_resource type="PackedScene" uid="uid://bncdb8lf6mmoj" path="res://assets/kitchen/cauldron/Cauldron.glb" id="1_06lgo"]
 
@@ -205,6 +205,9 @@ albedo_color = Color(0.572549, 0.423529, 0.34902, 0.388235)
 [sub_resource type="SphereMesh" id="SphereMesh_1n88t"]
 material = SubResource("StandardMaterial3D_w5sb7")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_i6ym5"]
+radius = 1.63636
+
 [node name="Cauldron" instance=ExtResource("1_06lgo")]
 
 [node name="Water" type="MeshInstance3D" parent="." index="1"]
@@ -222,3 +225,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.20597, 0)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_mv72h")
 draw_pass_1 = SubResource("SphereMesh_1n88t")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.23706, 0)
+shape = SubResource("SphereShape3D_i6ym5")
