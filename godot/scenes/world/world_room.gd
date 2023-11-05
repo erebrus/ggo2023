@@ -57,11 +57,9 @@ func _on_room_area_entered(body: Node3D):
 func _on_room_area_exited(body: Node3D):
 	if not body.is_in_group("Player"):
 		return
-	print("HERE")
 	var children = get_children()
 	for child in children:
 		if child.has_method("_on_room_exited"):
-			print("HERE in children iteration")
 			child._on_room_exited()
 	
 	update_hidden_nodes(false)

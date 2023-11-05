@@ -33,7 +33,9 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = Vector3.ZERO
 	if camera:
-		direction = (camera.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		direction = (camera.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y))
+		direction.y = 0
+		direction = direction.normalized()
 	else:
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
