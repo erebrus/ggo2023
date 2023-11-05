@@ -30,8 +30,8 @@ jobs:
       run: |
         cd godot
         mkdir -v -p build/windows
-        godot -v --headless --export-release "Windows" build/windows/skaley.exe
-        godot -v --headless --export-release "Windows" build/windows/skaley.exe
+        godot -v --headless --export-release "Windows Desktop" build/windows/skaley.exe
+        godot -v --headless --export-release "Windows Desktop" build/windows/skaley.exe
 
     - name: Publish to Itch.io
       uses: josephbmanley/butler-publish-itchio-action@master
