@@ -61,7 +61,6 @@ func _physics_process(delta):
 		current_speed = min(current_speed + acceleration*delta, max_speed)
 		global_position += direction * current_speed * delta
 	elif global_position.distance_squared_to(target_position) > .5:
-		print("SLOWING DOWN")
 		current_speed = max(current_speed - deceleration*delta, min_speed)
 		global_position += direction * current_speed * delta
 	else:

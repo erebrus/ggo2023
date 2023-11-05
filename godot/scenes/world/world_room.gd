@@ -14,6 +14,7 @@ func _ready():
 	var children = get_children()
 	for child in children:
 		assign_node(child)
+	update_hidden_nodes(false)
 
 func assign_node(node: Node)->void:
 	if node is RoomCamera:
@@ -51,11 +52,7 @@ func _on_room_area_entered(body: Node3D):
 		if child.has_method("_on_room_entered"):
 			child._on_room_entered(body)
 
-	
-	for hide_node in hide_on_exit:
-		hide_node.visible = true
-	for hide_node in hide_on_enter:
-		hide_node.visible = false
+	update_hidden_nodes(true)
 
 func _on_room_area_exited(body: Node3D):
 	if not body.is_in_group("Player"):
@@ -66,9 +63,19 @@ func _on_room_area_exited(body: Node3D):
 		if child.has_method("_on_room_exited"):
 			print("HERE in children iteration")
 			child._on_room_exited()
+	
+	update_hidden_nodes(false)
 
-	for hide_node in hide_on_enter:
-		hide_node.visible = true
-	for hide_node in hide_on_exit:
-		hide_node.visible = false
+func update_hidden_nodes(entering: bool):
+	if entering:
+		for hide_node in hide_on_exit:
+			hide_node.visible = true
+		for hide_node in hide_on_enter:
+			hide_node.visible = false
+	else:
+		for hide_node in hide_on_enter:
+			hide_node.visible = true
+		for hide_node in hide_on_exit:
+			hide_node.visible = false
+	
 

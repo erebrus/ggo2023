@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://dodu4b2847rst"]
+
+[ext_resource type="PackedScene" uid="uid://bvokicrc81mag" path="res://assets/kitchen/outside/outside_tileset.glb" id="1_03ek6"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_td7ef"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sj7oo"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1mk0w"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lc8ou"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_oo3yw"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_gggvb"]
+data = PackedVector3Array(-2, 0, 2, 2, 0, -2, 2, 0, 2, -2, 0, 2, -2, 0, -2, 2, 0, -2)
+
+[node name="outside_tileset" instance=ExtResource("1_03ek6")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Summer_Floor" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Summer_Floor/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_td7ef")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Summer_Floor1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Summer_Floor1/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_sj7oo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Fall_Floor" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fall_Floor/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_1mk0w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Fall_Floor1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fall_Floor1/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_lc8ou")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Winter_Floor" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Winter_Floor/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_oo3yw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Winter_Floor1" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Winter_Floor1/StaticBody3D" index="0"]
+shape = SubResource("ConcavePolygonShape3D_gggvb")

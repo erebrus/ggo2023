@@ -126,7 +126,8 @@ material = SubResource("StandardMaterial3D_bocjj")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14358, -0.803476)
-light_color = Color(0.894118, 0.698039, 0.529412, 1)
-light_energy = 4.41
+light_color = Color(0.815686, 0.439216, 0.121569, 1)
+light_energy = 1.48
+light_volumetric_fog_energy = 7.071
 shadow_enabled = true
 omni_range = 33.929
