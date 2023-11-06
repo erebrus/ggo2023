@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgcje5nt6qvuq"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_nja4j"]
+[ext_resource type="Texture2D" uid="uid://b0i1ut2h50ww0" path="res://assets/skelly/skelly_fake_sprite.png" id="2_71xhw"]
+[ext_resource type="PackedScene" uid="uid://c7nthqnfkovcn" path="res://scenes/world/world_camera.tscn" id="3_7wu01"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhefm"]
+transparency = 4
+albedo_texture = ExtResource("2_71xhw")
+rim_enabled = true
+rim = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q088w"]
+radius = 1.00917
+height = 4.20519
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_nja4j")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.27157, 0)
+material_override = SubResource("StandardMaterial3D_dhefm")
+gi_mode = 2
+billboard = 1
+shaded = true
+double_sided = false
+alpha_cut = 2
+texture_filter = 0
+texture = ExtResource("2_71xhw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21346, 0)
+shape = SubResource("CapsuleShape3D_q088w")
+
+[node name="BirdCamera" parent="." instance=ExtResource("3_7wu01")]
+transform = Transform3D(1, 0, 0, 0, 0.749407, 0.66211, 0, -0.66211, 0.749407, 0, 20.5654, 17.7716)
+follow_player = true
+allow_y_rotation = true
+
+[node name="CloseCamera" parent="." instance=ExtResource("3_7wu01")]
+transform = Transform3D(1, 0, 0, 0, 0.886898, 0.461965, 0, -0.461965, 0.886898, 0, 6.43592, 8.11111)
+follow_player = true
+allow_y_rotation = true

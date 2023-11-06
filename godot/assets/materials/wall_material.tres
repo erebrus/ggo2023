@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ckcvp8dwdv5u0"]
+
+[resource]
+resource_local_to_scene = true
+resource_name = "Wall"
+transparency = 1
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.662745, 0.67451, 0.788235, 1)
+roughness = 0.5

@@ -1,0 +1,109 @@
+[gd_scene load_steps=12 format=3 uid="uid://daxani2d2ydyg"]
+
+[ext_resource type="Script" path="res://scenes/world/world_room.gd" id="1_e8jou"]
+[ext_resource type="PackedScene" uid="uid://c7nthqnfkovcn" path="res://scenes/world/world_camera.tscn" id="2_yts0n"]
+[ext_resource type="MeshLibrary" uid="uid://drxqp3hhotdb2" path="res://assets/custom_resources/kitchen_tileset.tres" id="3_gn08p"]
+[ext_resource type="Script" path="res://scenes/interior/room_grid.gd" id="3_rtpi7"]
+[ext_resource type="Material" uid="uid://dcrsju24eftd1" path="res://assets/materials/castle_fog_material.tres" id="4_ad6ir"]
+[ext_resource type="PackedScene" uid="uid://grcukumdrc5i" path="res://scenes/interior/torch.tscn" id="5_1omd2"]
+[ext_resource type="Environment" uid="uid://byaxvi8vi3lrq" path="res://assets/custom_resources/kitchen_environment.tres" id="7_xt7h0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yr4kh"]
+size = Vector3(52, 12, 13)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8xjdq"]
+noise_type = 4
+seed = -140
+frequency = 0.0001
+fractal_octaves = 10
+fractal_lacunarity = 8.775
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_f68ey"]
+width = 128
+height = 128
+seamless = true
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_8xjdq")
+
+[sub_resource type="FogMaterial" id="FogMaterial_mriup"]
+density = 0.762
+albedo = Color(0.752941, 0.752941, 0.752941, 1)
+height_falloff = 0.0409602
+edge_fade = 6.62566
+density_texture = SubResource("NoiseTexture3D_f68ey")
+
+[node name="CastleHallway" type="Node3D" groups=["Room"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -16)
+script = ExtResource("1_e8jou")
+
+[node name="HallwayCamera" parent="." groups=["Camera"] instance=ExtResource("2_yts0n")]
+transform = Transform3D(1, 0, 1.74846e-07, -4.52534e-08, 0.965926, 0.258819, -1.68888e-07, -0.258819, 0.965926, 0, 6, 15)
+current = true
+environment = ExtResource("7_xt7h0")
+lock_z = true
+follow_player = true
+
+[node name="HallwayArea3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HallwayArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+shape = SubResource("BoxShape3D_yr4kh")
+
+[node name="GridMaps" type="Node3D" parent="."]
+script = ExtResource("3_rtpi7")
+
+[node name="Floors" type="GridMap" parent="GridMaps"]
+mesh_library = ExtResource("3_gn08p")
+cell_size = Vector3(4, 8, 4)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(0, 3, 0, 0, 2, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 65535, 1, 0, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 65533, 1, 0, 65534, 1, 0, 65532, 1, 0, 65531, 1, 0, 65531, 0, 0, 65532, 0, 0, 2, 1, 0, 2, 0, 0, 3, 1, 0, 3, 0, 0, 4, 1, 0, 4, 0, 0, 65540, 1, 1441792, 65539, 1, 1441792, 65538, 1, 1441792, 65537, 1, 1441792, 65537, 2, 1441792, 65538, 2, 1048576, 65539, 2, 1048576, 65540, 2, 1441792, 65540, 0, 1441792, 65539, 0, 1441792, 65538, 0, 1441792, 65537, 0, 1441792, 65536, 0, 1441792, 65536, 2, 1441792, 65536, 1, 1441792, 131071, 1, 1441792, 131071, 2, 1441792, 131070, 2, 1441792, 131070, 1, 1441792, 131071, 0, 1441792, 131070, 0, 1441792, 131069, 0, 1441792, 131068, 0, 1441792, 131068, 1, 1441792, 131069, 1, 1441792, 131069, 2, 1441792, 131068, 2, 1441792, 131067, 2, 1441792, 131067, 1, 1441792, 131067, 0, 1441792, 65538, 3, 1441792, 65539, 3, 1441792, 65540, 3, 1048576, 131066, 0, 1441792, 131066, 1, 1441792, 131066, 2, 1441792, 65541, 3, 1441792, 65541, 2, 1441792, 65541, 1, 1441792, 65541, 0, 1441792, 65536, 3, 1441792, 65537, 3, 1441792, 131070, 4, 1441792)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Walls" type="GridMap" parent="GridMaps"]
+mesh_library = ExtResource("3_gn08p")
+cell_size = Vector3(4, 8, 4)
+data = {
+"cells": PackedInt32Array(4, 65535, 655363, 65530, 65535, 1441795, 3, 65535, 655362, 2, 65535, 655362, 1, 65535, 655362, 0, 65535, 655362, 65535, 65535, 655362, 65534, 65535, 655362, 65533, 65535, 655362, 65532, 65535, 655362, 65531, 65535, 655362, 65530, 1, 3, 4, 1, 1048579)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="HideableWalls" type="GridMap" parent="GridMaps" groups=["HideOnEnter"]]
+mesh_library = ExtResource("3_gn08p")
+cell_size = Vector3(4, 8, 4)
+data = {
+"cells": PackedInt32Array(65534, 1, 2, 65533, 1, 2, 65532, 1, 2, 65531, 1, 2, 3, 1, 2, 1, 1, 2, 2, 1, 2, 65535, 1, 11, 0, 1, 1048587, 65535, 2, 1441794, 0, 2, 1048578)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Torches" type="Node3D" parent="GridMaps"]
+
+[node name="Torch" parent="GridMaps/Torches" instance=ExtResource("5_1omd2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4, -2)
+
+[node name="Torch2" parent="GridMaps/Torches" instance=ExtResource("5_1omd2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13, 4, -2)
+
+[node name="Torch3" parent="GridMaps/Torches" instance=ExtResource("5_1omd2")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -19, 4, -2)
+
+[node name="ExitFog" type="FogVolume" parent="." groups=["HideOnEnter"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+size = Vector3(25, 14, 17)
+material = ExtResource("4_ad6ir")
+
+[node name="EnterFog" type="FogVolume" parent="." groups=["HideOnExit"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2, 0.292025)
+size = Vector3(45, 14, 22)
+material = SubResource("FogMaterial_mriup")
+
+[node name="HallwaySpawn" type="Node3D" parent="." groups=["Spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("7_xt7h0")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]

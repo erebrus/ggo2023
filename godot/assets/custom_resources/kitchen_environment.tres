@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=2 format=3 uid="uid://byaxvi8vi3lrq"]
+
+[ext_resource type="Sky" uid="uid://crle34flkf040" path="res://assets/custom_resources/outside_sky.tres" id="1_jmweq"]
+
+[resource]
+background_mode = 2
+background_energy_multiplier = 0.0
+sky = ExtResource("1_jmweq")
+ambient_light_source = 3
+ambient_light_color = Color(0.439216, 0.631373, 0.321569, 1)
+ambient_light_energy = 3.38
+glow_enabled = true
+glow_levels/4 = 0.2
+glow_levels/5 = 0.4
+glow_intensity = 0.33
+glow_strength = 1.15
+glow_bloom = 0.6
+glow_hdr_threshold = 1.1
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.909804, 0.431373, 1, 1)
+volumetric_fog_emission = Color(0.956863, 0.756863, 0.498039, 1)
+volumetric_fog_emission_energy = 0.05
+volumetric_fog_ambient_inject = 1.3
