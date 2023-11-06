@@ -1,5 +1,8 @@
 class_name PlayerCamera extends Node3D
 
+signal zoomed_in()
+signal zoomed_out()
+
 var virtual_cameras: Array[RoomCamera] = []
 
 @export var current: bool = true:
@@ -20,29 +23,47 @@ var current_speed = 0
 @export var min_speed = 1
 @export var move_delay = .2
 
-@export var time_to_rotate = 1
-var initial_quat: Basis
-var target_quat: Basis
-var target_modified_quat: Basis
+@export var time_to_rotate: float = .5
+var initial_quat: Basis # quaternion before transition to target/target_modified
+var target_quat: Basis # virtual camera's quaternion
+var target_modified_quat: Basis # virtual camera's quaternion plus any applied rotation requests
 var time_since_camera_acquisiton: float = 0
 var time_since_rotation_request: float = 0
 @export var rotation_amount = 45
 var delay_timer = 0
+var use_player_cameras = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var cameras = get_tree().get_nodes_in_group("Camera")
-	for node in cameras:
-		if node is RoomCamera:
-			virtual_cameras.push_back(node)
-			node.triggered.connect(_on_camera_triggered)
+	var rooms = get_tree().get_nodes_in_group("Room")
+	for room in rooms:
+		room.room_entered.connect(_on_room_entered)
 
-func _on_camera_triggered(room_camera: RoomCamera)->void:
-	active_virtual = room_camera
-	initial_quat = transform.basis
-	target_quat = room_camera.transform.basis
-	target_modified_quat = room_camera.transform.basis
-	time_since_camera_acquisiton = 0
+func _on_room_entered(room: WorldRoom)->void:
+	var next_virtual: RoomCamera = null
+	if room.room_camera:
+		next_virtual = room.room_camera
+		# should have environment.. if set up properly :)
+		camera.environment = next_virtual.environment
+		use_player_cameras = false
+	elif player and !use_player_cameras:
+		use_player_cameras = true
+		# default to bird's eye (topdown) camera if transitioning out of room to outside
+		next_virtual = player.virtual_bird_camera
+		# no camera in room - check for environment override
+		if room.room_environment_override:
+			camera.environment = room.room_environment_override
+
+	swap_camera(next_virtual)
+		
+
+func swap_camera(next_virtual: RoomCamera)->void:
+	if next_virtual != active_virtual:
+		active_virtual = next_virtual
+		initial_quat = transform.basis
+		target_quat = active_virtual.transform.basis
+		target_modified_quat = active_virtual.transform.basis
+		time_since_camera_acquisiton = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -51,14 +72,24 @@ func _physics_process(delta):
 	
 	time_since_camera_acquisiton += delta
 	time_since_rotation_request += delta
+	delay_timer += delta
 
-	# rotate
 	if time_since_camera_acquisiton <= time_to_rotate :
+		# rotate to initial camera view
 		var slerp_quat = initial_quat.slerp(target_quat, min(1, time_since_camera_acquisiton / time_to_rotate))
 		transform.basis = Basis(slerp_quat)
 	else:
 		if active_virtual.allow_y_rotation:
-			if Input.is_action_just_pressed("rotate_clockwise") and time_since_rotation_request > time_to_rotate:
+			# camera rotates around y axis by 45 degrees if requested by the user
+			if use_player_cameras and Input.is_action_just_pressed("zoom_in"):
+				swap_camera(player.virtual_close_camera)
+				# environmental nodes can connect to this to determine if they show
+				zoomed_in.emit()
+			elif use_player_cameras and Input.is_action_just_pressed("zoom_out"):
+				swap_camera(player.virtual_bird_camera)
+				# environmental nodes can connect to this to determine if they show
+				zoomed_out.emit()
+			elif Input.is_action_just_pressed("rotate_clockwise") and time_since_rotation_request > time_to_rotate:
 				time_since_rotation_request = 0
 				initial_quat  = transform.basis
 				target_modified_quat = Basis(transform.basis.rotated(Vector3(0,1,0), deg_to_rad(rotation_amount)))
@@ -70,6 +101,7 @@ func _physics_process(delta):
 			var slerp_quat = initial_quat.slerp(target_modified_quat, min(1, time_since_rotation_request / time_to_rotate))
 			transform.basis = Basis(slerp_quat)
 
+	# This code only really makes sense if the camera for player following
 	delay_timer += delta
 	if delay_timer < move_delay:
 		return
@@ -87,9 +119,9 @@ func _physics_process(delta):
 		if not lock_y:
 			target_position.y = player.global_position.y
 		if not lock_z:
-			var offset = (transform.basis.z * Vector3(1,0,1)).normalized() * z_offset
-			target_position.x = (player.global_position - (transform.basis.z * Vector3(1,0,1)).normalized() * z_offset).x
-			target_position.z = (player.global_position - (transform.basis.z * Vector3(1,0,1)).normalized() * z_offset).z
+			var offset = (player.global_position - (transform.basis.z * Vector3(1,0,1)).normalized() * z_offset)
+			target_position.x = offset.x
+			target_position.z = offset.z
 
 	var direction = global_position.direction_to(target_position)
 	# if global_position.distance_squared_to(target_position) > .5:

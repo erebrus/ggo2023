@@ -12,7 +12,7 @@ func _ready():
 
 	if starting_room:
 		player.global_position = starting_room.room_spawn.global_position
-		starting_room._on_room_area_entered(player)
+		starting_room.on_room_area_entered(player)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

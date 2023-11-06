@@ -39,10 +39,9 @@ script = ExtResource("1_e8jou")
 [node name="HallwayCamera" parent="." groups=["Camera"] instance=ExtResource("2_yts0n")]
 transform = Transform3D(1, 0, 1.74846e-07, -4.52534e-08, 0.965926, 0.258819, -1.68888e-07, -0.258819, 0.965926, 0, 6, 15)
 current = true
+environment = ExtResource("7_xt7h0")
 lock_z = true
 follow_player = true
-z_offset = 0.0
-allow_y_rotation = false
 
 [node name="HallwayArea3D" type="Area3D" parent="."]
 
@@ -80,7 +79,7 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="Torches" type="Node3D" parent="GridMaps" groups=["HideOnExit"]]
+[node name="Torches" type="Node3D" parent="GridMaps"]
 
 [node name="Torch" parent="GridMaps/Torches" instance=ExtResource("5_1omd2")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 4, -2)
@@ -106,3 +105,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("7_xt7h0")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]

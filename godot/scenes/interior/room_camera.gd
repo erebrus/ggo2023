@@ -6,8 +6,8 @@ signal triggered(camera: RoomCamera)
 @onready var camera3D: Camera3D = $Camera3D
 
 var initial_position = Vector3.ZERO
-var player: Node3D
 
+# this is meant for editor toggling, so you can look at the camera's perspective while tweaking the position
 @export var current: bool:
 	set(value):
 		current = value
@@ -28,13 +28,13 @@ var player: Node3D
 
 @export var allow_y_rotation: bool = false
 
+func on_room_entered(_body: Node3D):
+	#triggered.emit(self)
+	pass
 
-func _on_room_entered(body: Node3D):
-	triggered.emit(self)
-	player = body
-
-func _on_room_exited():
-	global_position = initial_position
+func on_room_exited():
+	#global_position = initial_position
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

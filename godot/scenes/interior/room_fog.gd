@@ -1,9 +1,9 @@
 class_name RoomFog extends FogVolume
 
-func _on_room_entered(player: Node3D):
+func on_room_entered(player: Node3D):
 	visible = false
 
-func _on_room_exited():
+func on_room_exited():
 	visible = true
 
 # Called when the node enters the scene tree for the first time.

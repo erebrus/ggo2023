@@ -125,7 +125,7 @@ radius = 0.365438
 material = SubResource("StandardMaterial3D_bocjj")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14358, -0.803476)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14358, -1.19265)
 light_color = Color(0.815686, 0.439216, 0.121569, 1)
 light_energy = 1.48
 light_volumetric_fog_energy = 7.071

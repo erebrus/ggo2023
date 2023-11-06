@@ -1,6 +1,6 @@
 class_name RoomGrid extends Node3D
 
-func _on_room_entered(player: Node3D):
+func on_room_entered(_player: Node3D):
 	pass
 
 func _on_room_exited():

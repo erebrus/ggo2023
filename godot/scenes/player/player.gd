@@ -1,17 +1,29 @@
-extends CharacterBody3D
+class_name PlayerController extends CharacterBody3D
 
 
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 
+@onready var sprite: Sprite3D = $Sprite3D
+
 var camera: Camera3D
+@onready var virtual_bird_camera = $BirdCamera
+@onready var virtual_close_camera = $CloseCamera
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func set_billboard(enabled: bool)->void:
+	if sprite.material_override:
+		if sprite.material_override is StandardMaterial3D:
+			sprite.material_override.billboard_mode = BaseMaterial3D.BILLBOARD_ENABLED if enabled else BaseMaterial3D.BILLBOARD_DISABLED
+	else:
+		sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED if enabled else BaseMaterial3D.BILLBOARD_DISABLED
 
 func _ready():
-	pass
+	var rooms = get_tree().get_nodes_in_group("Room")
+	for room in rooms:
+		room.room_entered.connect(_on_room_entered)
 
 func _process(_delta):
 	pass
@@ -40,6 +52,7 @@ func _physics_process(delta):
 		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	if direction:
+		sprite.flip_h = true if input_dir.x > 0 else false
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
 	else:
@@ -47,3 +60,7 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+func _on_room_entered(room: WorldRoom)->void:
+	set_billboard(room.use_player_billboard)
+
