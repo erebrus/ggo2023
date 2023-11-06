@@ -24,6 +24,10 @@ func _ready():
 	var rooms = get_tree().get_nodes_in_group("Room")
 	for room in rooms:
 		room.room_entered.connect(_on_room_entered)
+	
+	# set virtual camera z-offsets, since these are always determined by the player scene
+	virtual_bird_camera.z_offset = virtual_bird_camera.position.z
+	virtual_close_camera.z_offset = virtual_close_camera.position.z
 
 func _process(_delta):
 	pass

@@ -33,10 +33,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21346, 0)
 shape = SubResource("CapsuleShape3D_q088w")
 
 [node name="BirdCamera" parent="." instance=ExtResource("3_7wu01")]
-transform = Transform3D(1, 0, 0, 0, 0.749407, 0.66211, 0, -0.66211, 0.749407, 0, 13.6219, 11.9684)
-current = true
+transform = Transform3D(1, 0, 0, 0, 0.749407, 0.66211, 0, -0.66211, 0.749407, 0, 20.5654, 17.7716)
 follow_player = true
+allow_y_rotation = true
 
 [node name="CloseCamera" parent="." instance=ExtResource("3_7wu01")]
-transform = Transform3D(1, 0, 0, 0, 0.989684, 0.143268, 0, -0.143268, 0.989684, 0, 3.86876, 8.72398)
+transform = Transform3D(1, 0, 0, 0, 0.886898, 0.461965, 0, -0.461965, 0.886898, 0, 6.43592, 8.11111)
 follow_player = true
+allow_y_rotation = true

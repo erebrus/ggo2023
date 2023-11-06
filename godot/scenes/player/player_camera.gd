@@ -26,6 +26,7 @@ var current_speed = 0
 @export var time_to_rotate: float = .5
 var initial_quat: Basis # quaternion before transition to target/target_modified
 var target_quat: Basis # virtual camera's quaternion
+var target_pos: Vector3
 var target_modified_quat: Basis # virtual camera's quaternion plus any applied rotation requests
 var time_since_camera_acquisiton: float = 0
 var time_since_rotation_request: float = 0
@@ -60,6 +61,7 @@ func _on_room_entered(room: WorldRoom)->void:
 func swap_camera(next_virtual: RoomCamera)->void:
 	if next_virtual != active_virtual:
 		active_virtual = next_virtual
+		target_pos = active_virtual.global_position
 		initial_quat = transform.basis
 		target_quat = active_virtual.transform.basis
 		target_modified_quat = active_virtual.transform.basis
@@ -85,10 +87,12 @@ func _physics_process(delta):
 				swap_camera(player.virtual_close_camera)
 				# environmental nodes can connect to this to determine if they show
 				zoomed_in.emit()
+				return
 			elif use_player_cameras and Input.is_action_just_pressed("zoom_out"):
 				swap_camera(player.virtual_bird_camera)
 				# environmental nodes can connect to this to determine if they show
 				zoomed_out.emit()
+				return
 			elif Input.is_action_just_pressed("rotate_clockwise") and time_since_rotation_request > time_to_rotate:
 				time_since_rotation_request = 0
 				initial_quat  = transform.basis
@@ -110,29 +114,30 @@ func _physics_process(delta):
 	var lock_x = active_virtual.lock_x
 	var lock_y = active_virtual.lock_y
 	var lock_z = active_virtual.lock_z
-	var z_offset= active_virtual.z_offset
+	var z_offset= active_virtual.z_offset*-1
 
-	var target_position = active_virtual.global_position
+	var target_modified_pos = target_pos
 	if follow_player and player:
 		if not lock_x:
-			target_position.x = player.global_position.x
+			target_modified_pos.x = player.global_position.x
 		if not lock_y:
-			target_position.y = player.global_position.y
+			target_modified_pos.y = player.global_position.y
 		if not lock_z:
+			# the code below is garbage and will overwrite the x value from a previous assignment
 			var offset = (player.global_position - (transform.basis.z * Vector3(1,0,1)).normalized() * z_offset)
-			target_position.x = offset.x
-			target_position.z = offset.z
+			target_modified_pos.x = offset.x
+			target_modified_pos.z = offset.z
 
-	var direction = global_position.direction_to(target_position)
+	var direction = global_position.direction_to(target_modified_pos)
 	# if global_position.distance_squared_to(target_position) > .5:
 	# 	current_speed = min(current_speed + acceleration*delta, max_speed)
 	# 	global_position += direction * current_speed * delta
 	# else:
 	# 	delay_timer = 0
-	if global_position.distance_squared_to(target_position) > 2:
+	if global_position.distance_squared_to(target_modified_pos) > 2:
 		current_speed = min(current_speed + acceleration*delta, max_speed)
 		global_position += direction * current_speed * delta
-	elif global_position.distance_squared_to(target_position) > .5:
+	elif global_position.distance_squared_to(target_modified_pos) > .5:
 		current_speed = max(current_speed - deceleration*delta, min_speed)
 		global_position += direction * current_speed * delta
 	else:

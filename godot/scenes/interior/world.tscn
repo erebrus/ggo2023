@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bai3yjds0xhjd"]
+[gd_scene load_steps=10 format=3 uid="uid://bai3yjds0xhjd"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_m7x38"]
 [ext_resource type="Environment" uid="uid://dv0dw7eaf4ly1" path="res://assets/custom_resources/summer_environment.tres" id="2_nbt3r"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://daxani2d2ydyg" path="res://scenes/interior/castle_hallway.tscn" id="5_ixh61"]
 [ext_resource type="Script" path="res://scenes/world/world_room.gd" id="6_klcea"]
 [ext_resource type="MeshLibrary" uid="uid://co003aun3knhg" path="res://assets/custom_resources/outside_tileset.tres" id="7_ftr70"]
-[ext_resource type="Script" path="res://scenes/interior/room_camera.gd" id="8_asx6v"]
 [ext_resource type="PackedScene" uid="uid://bgfx4r6c0pbvg" path="res://scenes/player/player_camera.tscn" id="9_ha77v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwbsf"]
@@ -39,6 +38,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4)
 
 [node name="Summer" type="Node3D" parent="Outside" groups=["Room"]]
 script = ExtResource("6_klcea")
+room_environment_override = ExtResource("2_nbt3r")
 use_player_billboard = true
 
 [node name="Floor" type="GridMap" parent="Outside/Summer" groups=["HideOnExit"]]
@@ -57,18 +57,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86, 0, -7)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Outside/Summer/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 6, -5)
 shape = SubResource("BoxShape3D_kwbsf")
-
-[node name="Camera3D" type="Camera3D" parent="Outside/Summer" groups=["Camera"]]
-transform = Transform3D(1, 8.3428e-09, -1.624e-08, 1.06524e-08, 0.455793, 0.890086, 1.48279e-08, -0.890086, 0.455793, -49.5, 21, 0.405045)
-environment = ExtResource("2_nbt3r")
-current = true
-fov = 70.0
-script = ExtResource("8_asx6v")
-current = true
-environment = ExtResource("2_nbt3r")
-follow_player = true
-z_offset = -8.0
-allow_y_rotation = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Outside/Summer" groups=["HideOnExit"]]
 transform = Transform3D(0.959231, -0.223586, -0.172872, 0.124222, -0.215874, 0.968487, -0.253859, -0.950478, -0.179299, -88.1938, 14.9902, 0)
