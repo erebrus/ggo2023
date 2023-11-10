@@ -10,6 +10,7 @@ var hide_on_enter: Array[Node3D]
 var hide_on_exit: Array[Node3D]
 
 @export var room_environment_override: Environment
+@export var allow_player_rotation = false
 @export var use_player_billboard = false
 
 # Called when the node enters the scene tree for the first time.

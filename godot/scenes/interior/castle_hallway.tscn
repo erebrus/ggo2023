@@ -42,6 +42,7 @@ current = true
 environment = ExtResource("7_xt7h0")
 lock_z = true
 follow_player = true
+swap_time = 1.0
 
 [node name="HallwayArea3D" type="Area3D" parent="."]
 

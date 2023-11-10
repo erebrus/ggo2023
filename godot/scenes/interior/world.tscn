@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bai3yjds0xhjd"]
+[gd_scene load_steps=11 format=3 uid="uid://bai3yjds0xhjd"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_m7x38"]
 [ext_resource type="Environment" uid="uid://dv0dw7eaf4ly1" path="res://assets/custom_resources/summer_environment.tres" id="2_nbt3r"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://daxani2d2ydyg" path="res://scenes/interior/castle_hallway.tscn" id="5_ixh61"]
 [ext_resource type="Script" path="res://scenes/world/world_room.gd" id="6_klcea"]
 [ext_resource type="MeshLibrary" uid="uid://co003aun3knhg" path="res://assets/custom_resources/outside_tileset.tres" id="7_ftr70"]
+[ext_resource type="PackedScene" uid="uid://cc2qamk113wor" path="res://scenes/outside/tree.tscn" id="8_iuqds"]
 [ext_resource type="PackedScene" uid="uid://bgfx4r6c0pbvg" path="res://scenes/player/player_camera.tscn" id="9_ha77v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwbsf"]
@@ -28,6 +29,7 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("3_aytuc")]
 process_priority = -10
+process_physics_priority = -10
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4)
 
 [node name="Kitchen" parent="." instance=ExtResource("4_56ecv")]
@@ -59,13 +61,51 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 6, -5)
 shape = SubResource("BoxShape3D_kwbsf")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Outside/Summer" groups=["HideOnExit"]]
-transform = Transform3D(0.959231, -0.223586, -0.172872, 0.124222, -0.215874, 0.968487, -0.253859, -0.950478, -0.179299, -88.1938, 14.9902, 0)
+transform = Transform3D(-0.857785, -0.513989, -0.00454434, 0.356966, -0.602047, 0.714223, -0.369839, 0.611028, 0.699903, -88.1938, 14.9902, 0)
 light_color = Color(0.690196, 0.776471, 0.690196, 1)
 light_volumetric_fog_energy = 5.214
 shadow_enabled = true
-shadow_bias = 0.054
-shadow_normal_bias = 0.0
-shadow_blur = 2.651
+
+[node name="BirdEnvironment" type="Node3D" parent="Outside/Summer"]
+
+[node name="Tree" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.4544, 0.31774, 0)
+
+[node name="Tree2" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -69.9544, 0.31774, -2)
+
+[node name="Tree3" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.9544, 0.31774, 3.5)
+
+[node name="Tree4" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.9544, 0.31774, -10.5)
+
+[node name="Tree5" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.9544, 0.31774, -17)
+
+[node name="Tree6" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -61.9544, 0.31774, -3)
+
+[node name="Tree7" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4544, 0.31774, -20)
+
+[node name="Tree8" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4544, 0.31774, -7.5)
+
+[node name="Tree9" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.4544, 0.31774, -25)
+
+[node name="Tree10" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.9544, 0.31774, -22)
+
+[node name="Tree11" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.4544, 0.31774, -19.5)
+
+[node name="Tree12" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.4544, 0.31774, -5)
+
+[node name="Tree13" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.9544, 0.31774, 6.5)
 
 [node name="Fall" type="Node3D" parent="Outside" groups=["Room"]]
 script = ExtResource("6_klcea")
@@ -82,6 +122,11 @@ data = {
 }
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_ha77v")]
+process_priority = 10
+process_physics_priority = 10
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 2, 5, 14)
 player = NodePath("../Player")
 max_speed = 10
+move_delay = 0.0
+rotation_speed = 10.0
+time_to_rotate = 0.1

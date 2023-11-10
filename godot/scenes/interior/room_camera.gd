@@ -24,7 +24,11 @@ var initial_position = Vector3.ZERO
 @export var lock_x: bool = false
 @export var lock_z: bool = false
 @export var follow_player: bool = false
+@export var follow_camera: bool = false
 @export var z_offset: float = 0
+@export var swap_time: float = .5
+
+@export var acquisition_time: float = 1
 
 @export var allow_y_rotation: bool = false
 
