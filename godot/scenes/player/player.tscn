@@ -3,18 +3,15 @@
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_nja4j"]
 [ext_resource type="Texture2D" uid="uid://b0i1ut2h50ww0" path="res://assets/skelly/skelly_fake_sprite.png" id="2_71xhw"]
 [ext_resource type="PackedScene" uid="uid://c7nthqnfkovcn" path="res://scenes/world/world_camera.tscn" id="3_7wu01"]
+[ext_resource type="Material" uid="uid://i7lbebf0dbgi" path="res://assets/materials/player_rim_material.tres" id="3_j8l31"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q088w"]
 radius = 1.00917
 height = 4.20519
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhefm"]
-transparency = 4
-albedo_texture = ExtResource("2_71xhw")
-rim_enabled = true
-rim = 0.5
-
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_nja4j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -37,9 +34,8 @@ allow_y_rotation = true
 
 [node name="Sprite3D" type="Sprite3D" parent="BodyPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.27157, 0)
-material_override = SubResource("StandardMaterial3D_dhefm")
+material_override = ExtResource("3_j8l31")
 gi_mode = 2
-billboard = 1
 shaded = true
 double_sided = false
 alpha_cut = 2

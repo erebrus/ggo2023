@@ -1,0 +1,130 @@
+[gd_scene load_steps=12 format=3 uid="uid://cgpv4xh01a8my"]
+
+[ext_resource type="MeshLibrary" uid="uid://drxqp3hhotdb2" path="res://assets/custom_resources/kitchen_tileset.tres" id="1_2k3ua"]
+[ext_resource type="Script" path="res://scenes/world/world_room.gd" id="1_xd5v1"]
+[ext_resource type="PackedScene" uid="uid://bgcje5nt6qvuq" path="res://scenes/player/player.tscn" id="2_gsdye"]
+[ext_resource type="Script" path="res://scenes/interior/room_camera.gd" id="3_0wltp"]
+[ext_resource type="PackedScene" uid="uid://ddo5eh8r5r2am" path="res://scenes/interior/cauldron.tscn" id="4_jqktv"]
+[ext_resource type="PackedScene" uid="uid://l8vo81p6e78a" path="res://scenes/interior/podium_and_book.tscn" id="4_oll0f"]
+[ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="6_ktdmd"]
+[ext_resource type="Environment" uid="uid://cc2bx5o1yk7ox" path="res://scenes/interior/wizard_environment.tres" id="7_ao7ac"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vppvn"]
+albedo_color = Color(0.917647, 0.909804, 0.972549, 1)
+emission_enabled = true
+emission = Color(0.913725, 0.541176, 0.764706, 1)
+emission_energy_multiplier = 2.54
+
+[sub_resource type="FogMaterial" id="FogMaterial_rpso0"]
+density = 2.0619
+emission = Color(1, 1, 1, 1)
+height_falloff = 0.532322
+edge_fade = 0.492459
+
+[sub_resource type="FogMaterial" id="FogMaterial_ml2y0"]
+density = 0.198
+
+[node name="WizardsLair" type="Node3D"]
+
+[node name="Kitchen" type="Node3D" parent="."]
+script = ExtResource("1_xd5v1")
+
+[node name="Environment" type="Node3D" parent="Kitchen"]
+
+[node name="Floor" type="GridMap" parent="Kitchen/Environment"]
+mesh_library = ExtResource("1_2k3ua")
+cell_size = Vector3(4, 8, 4)
+cell_center_y = false
+collision_layer = 2
+collision_mask = 4
+data = {
+"cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 65535, 65535, 0, 65535, 0, 0, 1, 0, 0, 1, 65535, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 0, 65533, 0, 0, 65532, 0, 65534, 1, 0, 65534, 0, 0, 65534, 65535, 0, 65534, 65534, 0, 65533, 65534, 0, 65533, 65535, 0, 65533, 0, 0, 65533, 1, 0, 2, 1, 0, 2, 0, 0, 2, 65535, 0, 2, 65534, 0, 3, 65534, 0, 3, 65535, 0, 3, 0, 0, 3, 1, 0)
+}
+
+[node name="Walls" type="GridMap" parent="Kitchen/Environment"]
+mesh_library = ExtResource("1_2k3ua")
+cell_size = Vector3(4, 8, 4)
+cell_center_x = false
+cell_center_z = false
+data = {
+"cells": PackedInt32Array(65533, 65534, 1441795, 4, 65534, 655363, 65534, 65534, 655362, 65535, 65534, 655362, 3, 65534, 655362, 2, 65534, 655362, 65533, 65535, 1441794, 65533, 1, 1441794, 4, 65535, 1048578, 4, 1, 1048578, 4, 2, 1048579, 65533, 2, 3, 0, 65534, 1441803, 1, 65534, 655371, 0, 65533, 1441794, 1, 65533, 1048578, 65533, 0, 1441797, 4, 0, 1048581)
+}
+
+[node name="Decor" type="Node3D" parent="Kitchen/Environment"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Kitchen/Environment/Decor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2166, 4, 0)
+material_override = SubResource("StandardMaterial3D_vppvn")
+size = Vector3(0.376289, 3, 1.19832)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Kitchen/Environment/Decor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2834, 4, 0)
+material_override = SubResource("StandardMaterial3D_vppvn")
+size = Vector3(0.376289, 3, 1.19832)
+
+[node name="Cauldron" parent="Kitchen/Environment/Decor" instance=ExtResource("4_jqktv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1.5)
+
+[node name="podium_and_book" parent="Kitchen/Environment/Decor" instance=ExtResource("4_oll0f")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 13.5, 0, -0.5)
+
+[node name="Lights" type="Node3D" parent="Kitchen/Environment"]
+
+[node name="CauldronLight" type="OmniLight3D" parent="Kitchen/Environment/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 0.5)
+light_color = Color(0.898039, 0.690196, 0.454902, 1)
+light_energy = 2.535
+light_indirect_energy = 3.06
+light_volumetric_fog_energy = 2.833
+shadow_enabled = true
+omni_range = 8.566
+omni_attenuation = 0.353558
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Kitchen/Environment/Lights"]
+transform = Transform3D(0.0471587, 0, -0.998887, 0, 1, 0, 0.998887, 0, 0.0471587, 0, 0, 0)
+light_color = Color(0.772549, 0.709804, 1, 1)
+
+[node name="WindowLight" type="SpotLight3D" parent="Kitchen/Environment/Lights"]
+transform = Transform3D(-0.407235, 0.705352, -0.580206, -0.290103, 0.502473, 0.81447, 0.866025, 0.5, -6.45239e-08, -11.5883, 4, 0)
+light_color = Color(0.862745, 0.435294, 0.901961, 1)
+light_energy = 15.56
+light_volumetric_fog_energy = 3.357
+shadow_enabled = true
+spot_range = 20.6677
+spot_attenuation = 1.1487
+
+[node name="WindowLight2" type="SpotLight3D" parent="Kitchen/Environment/Lights"]
+transform = Transform3D(0.407235, -0.705352, 0.580206, -0.290103, 0.502473, 0.81447, -0.866026, -0.5, 1.99637e-09, 15.4117, 4, 0)
+light_color = Color(0.862745, 0.435294, 0.901961, 1)
+light_energy = 15.56
+light_volumetric_fog_energy = 3.357
+shadow_enabled = true
+spot_range = 20.6677
+spot_attenuation = 1.1487
+
+[node name="FogVolume" type="FogVolume" parent="Kitchen/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -12)
+size = Vector3(2, 19.5, 9)
+material = SubResource("FogMaterial_rpso0")
+
+[node name="KitchenCamera" type="Camera3D" parent="Kitchen" groups=["Camera"]]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 2.5, 9, 13)
+environment = ExtResource("7_ao7ac")
+fov = 90.0
+script = ExtResource("3_0wltp")
+environment = ExtResource("7_ao7ac")
+
+[node name="Player" parent="." instance=ExtResource("2_gsdye")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.84472, 0, 2.60642)
+
+[node name="PlayerCamera" type="Node3D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("6_ktdmd")
+player = NodePath("../Player")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("7_ao7ac")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69825, 0, 0)
+size = Vector3(27.9444, 2, 16.4045)
+material = SubResource("FogMaterial_ml2y0")
