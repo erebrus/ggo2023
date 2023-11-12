@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfwrnr18dnwom"]
+
+[ext_resource type="Script" path="res://rotating_camera.gd" id="1_5gj1n"]
+
+[node name="rotating_camera" type="Node3D"]
+script = ExtResource("1_5gj1n")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.876307, 0.481754, 0, -0.481754, 0.876307, 0, 0.2, 0.3)
+cull_mask = 1048573

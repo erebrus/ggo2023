@@ -1,0 +1,178 @@
+[gd_scene load_steps=20 format=3 uid="uid://b4qh0i4e8rig"]
+
+[ext_resource type="Texture2D" uid="uid://h0dhyks8v0r4" path="res://images/Test_01_N.png" id="1_vmmia"]
+[ext_resource type="Texture2D" uid="uid://bhqk5njq4v67c" path="res://images/Vaporwave_Skybox_Front.png" id="2_rgr1h"]
+[ext_resource type="PackedScene" uid="uid://cqopu1xubvq2q" path="res://Char_1.tscn" id="3_duxrc"]
+[ext_resource type="Texture2D" uid="uid://cyuht34qncqub" path="res://images/Random Placeholders/TreeBig.png" id="5_jby6i"]
+[ext_resource type="Script" path="res://face_the_camera.gd" id="5_kyapp"]
+[ext_resource type="Texture2D" uid="uid://crfdkg8ingc3o" path="res://images/Random Placeholders/TreeStump.png" id="7_artku"]
+[ext_resource type="PackedScene" uid="uid://cuquq7r78ijkq" path="res://grass_1.tscn" id="8_ged33"]
+[ext_resource type="PackedScene" uid="uid://bvr8wquh5jrur" path="res://rotating_camera.tscn" id="8_ninvl"]
+[ext_resource type="Material" uid="uid://c5uin0f5tlpbf" path="res://fade_away.material" id="9_to8h2"]
+[ext_resource type="PackedScene" uid="uid://dliy7o24kjg7m" path="res://bat.tscn" id="10_cgxjo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_87n11"]
+
+[sub_resource type="Shader" id="Shader_fm4sb"]
+code = "// NOTE: Shader automatically converted from Godot Engine 4.1.2.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix,depth_draw_opaque,cull_back,diffuse_burley,specular_schlick_ggx,vertex_lighting;
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color,filter_linear_mipmap,repeat_enable;
+uniform float point_size : hint_range(0,128);
+uniform float roughness : hint_range(0,1);
+uniform sampler2D texture_metallic : hint_default_white,filter_linear_mipmap,repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r,filter_linear_mipmap,repeat_enable;
+uniform float specular;
+uniform float metallic;
+uniform sampler2D texture_normal : hint_roughness_normal,filter_linear_mipmap,repeat_enable;
+uniform float normal_scale : hint_range(-16,16);
+uniform sampler2D texture_heightmap : hint_default_black,filter_linear_mipmap,repeat_enable;
+uniform float heightmap_scale;
+uniform int heightmap_min_layers;
+uniform int heightmap_max_layers;
+uniform vec2 heightmap_flip;
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+
+void vertex() {
+	ROUGHNESS=roughness;
+	UV=UV*uv1_scale.xy+uv1_offset.xy;
+}
+
+
+
+
+
+
+void fragment() {
+	vec2 base_uv = UV;
+	{
+		vec3 view_dir = normalize(normalize(-VERTEX + EYE_OFFSET) * mat3(TANGENT * heightmap_flip.x, -BINORMAL * heightmap_flip.y, NORMAL));
+		float depth = texture(texture_heightmap, base_uv).r;
+		vec2 ofs = base_uv - view_dir.xy * depth * heightmap_scale * 0.01;
+		base_uv=ofs;
+	}
+	vec4 albedo_tex = texture(texture_albedo,base_uv);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	float metallic_tex = dot(texture(texture_metallic,base_uv),metallic_texture_channel);
+	METALLIC = metallic_tex * metallic;
+	vec4 roughness_texture_channel = vec4(1.0,0.0,0.0,0.0);
+	float roughness_tex = dot(texture(texture_roughness,base_uv),roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+	SPECULAR = specular;
+	NORMAL_MAP = texture(texture_normal,base_uv).rgb;
+	NORMAL_MAP_DEPTH = normal_scale;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_274vk"]
+seed = 4
+frequency = 0.0101
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4wunx"]
+seamless = true
+seamless_blend_skirt = 0.21
+noise = SubResource("FastNoiseLite_274vk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywqjc"]
+render_priority = 0
+shader = SubResource("Shader_fm4sb")
+shader_parameter/albedo = Color(0.301961, 0.235294, 0.466667, 1)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = null
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/normal_scale = 1.0
+shader_parameter/heightmap_scale = 4.96
+shader_parameter/heightmap_min_layers = 8
+shader_parameter/heightmap_max_layers = 32
+shader_parameter/heightmap_flip = Vector2(1, 1)
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_4wunx")
+shader_parameter/texture_roughness = ExtResource("1_vmmia")
+shader_parameter/texture_normal = ExtResource("1_vmmia")
+shader_parameter/texture_heightmap = ExtResource("1_vmmia")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_6cvu5"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_7q17d"]
+rayleigh_coefficient = 0.0
+mie_coefficient = 0.145
+mie_eccentricity = 0.95
+mie_color = Color(0.647059, 0.368627, 0.184314, 1)
+ground_color = Color(0.360784, 0.262745, 0.505882, 1)
+night_sky = ExtResource("2_rgr1h")
+
+[sub_resource type="Sky" id="Sky_mr5jd"]
+sky_material = SubResource("PhysicalSkyMaterial_7q17d")
+
+[sub_resource type="Environment" id="Environment_hpp76"]
+background_mode = 2
+sky = SubResource("Sky_mr5jd")
+
+[node name="World" type="Node3D"]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_87n11")
+material = SubResource("ShaderMaterial_ywqjc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_6cvu5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hpp76")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("3_duxrc")]
+
+[node name="Tree" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2, 0)
+layers = 2
+texture = ExtResource("5_jby6i")
+script = ExtResource("5_kyapp")
+
+[node name="Sprite3D" type="Sprite3D" parent="Tree"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.5, 0)
+layers = 32
+texture = ExtResource("7_artku")
+
+[node name="rotating_camera" parent="." node_paths=PackedStringArray("watch_object") instance=ExtResource("8_ninvl")]
+watch_object = NodePath("../CharacterBody3D")
+
+[node name="grass_3" parent="." instance=ExtResource("8_ged33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7919, 0.229677, 0.488436)
+
+[node name="grass_2" parent="." instance=ExtResource("8_ged33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.90295, 0.146442, 0.838906)
+
+[node name="grass_1" parent="." instance=ExtResource("8_ged33")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.04471, 0.207479, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.63659, 0.640642, -0.365313)
+material = ExtResource("9_to8h2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.637203, 0.215718, -0.73989, 0.278056, 0.831022, 0.481754, 0.718788, -0.512706, 0.469549, 0, 2.13, 0)
+
+[node name="Bat" parent="." node_paths=PackedStringArray("follow_object") instance=ExtResource("10_cgxjo")]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, -2.46878, 1.50193, -1.34656)
+follow_object = NodePath("../CharacterBody3D")
+follow_offset = Vector3(-0.75, 2, 0)
+follow_offset_local = true

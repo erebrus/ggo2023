@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqopu1xubvq2q"]
+
+[ext_resource type="Script" path="res://Char_1_Movement.gd" id="1_8ohgo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_cawlh"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_8ohgo")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+layers = 2
+sides = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_cawlh")

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dliy7o24kjg7m"]
+
+[ext_resource type="Texture2D" uid="uid://dysmmdi1juj3e" path="res://images/Random Placeholders/bat.png" id="1_vk0fa"]
+[ext_resource type="Script" path="res://bat_follow.gd" id="2_w0h6g"]
+
+[node name="Sprite3D" type="Sprite3D"]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+texture = ExtResource("1_vk0fa")
+script = ExtResource("2_w0h6g")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cuquq7r78ijkq"]
+
+[ext_resource type="Texture2D" uid="uid://dpopyehqgx1py" path="res://images/Random Placeholders/Grass2.png" id="1_cxrmb"]
+[ext_resource type="Shader" path="res://testing.gdshader" id="1_k8cuo"]
+[ext_resource type="Script" path="res://face_the_camera.gd" id="2_jc77t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_monli"]
+render_priority = 0
+shader = ExtResource("1_k8cuo")
+shader_parameter/u_dither_start = 0.0
+shader_parameter/u_dither_end = 4.0
+shader_parameter/u_dither_size = 8.0
+shader_parameter/u_color_tex = ExtResource("1_cxrmb")
+
+[node name="grass_1" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.17, 0, 0, 0, 0.17, 0, 0, 0, 0.17, 0, 0, 0)
+layers = 32
+material_override = SubResource("ShaderMaterial_monli")
+texture = ExtResource("1_cxrmb")
+script = ExtResource("2_jc77t")

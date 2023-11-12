@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvr8wquh5jrur"]
+
+[ext_resource type="Script" path="res://rotating_camera.gd" id="1_h4lhw"]
+[ext_resource type="PackedScene" uid="uid://bfwrnr18dnwom" path="res://rotating_small_camera.tscn" id="2_f6rcs"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_voi4s"]
+viewport_path = NodePath("Camera3D/SubViewport")
+
+[node name="rotating_camera" type="Node3D"]
+script = ExtResource("1_h4lhw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.876307, 0.481754, 0, -0.481754, 0.876307, 0, 2, 3)
+cull_mask = 1048543
+
+[node name="Sprite3D" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(0.185, 0, 0, 0, 0.185, 0, 0, 0, 0.185, 0.895, -0.34, -1)
+sorting_offset = -1.0
+sorting_use_aabb_center = false
+texture = SubResource("ViewportTexture_voi4s")
+
+[node name="SubViewport" type="SubViewport" parent="Camera3D"]
+
+[node name="rotating_camera2" parent="Camera3D/SubViewport" node_paths=PackedStringArray("watch_object") instance=ExtResource("2_f6rcs")]
+watch_object = NodePath("../../..")
