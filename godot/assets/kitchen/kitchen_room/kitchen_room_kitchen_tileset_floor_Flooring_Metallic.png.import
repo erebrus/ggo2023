@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x68svjygfmi8"
-path.s3tc="res://.godot/imported/podium_and_book_podium_and_book_Book_BaseColor.png-9b64ed88658040dca537741787de59d9.s3tc.ctex"
+uid="uid://k2hqbebmeoa8"
+path.s3tc="res://.godot/imported/kitchen_room_kitchen_tileset_floor_Flooring_Metallic.png-131d8d124e128aa2d290f71d134fae19.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://assets/kitchen/podium_book/podium_and_book_podium_and_book_Book_BaseColor.png"
-dest_files=["res://.godot/imported/podium_and_book_podium_and_book_Book_BaseColor.png-9b64ed88658040dca537741787de59d9.s3tc.ctex"]
+source_file="res://assets/kitchen/kitchen_room/kitchen_room_kitchen_tileset_floor_Flooring_Metallic.png"
+dest_files=["res://.godot/imported/kitchen_room_kitchen_tileset_floor_Flooring_Metallic.png-131d8d124e128aa2d290f71d134fae19.s3tc.ctex"]
 
 [params]
 

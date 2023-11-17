@@ -13,8 +13,9 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_kwbsf"]
 size = Vector3(104.5, 17, 98.5)
 
-[node name="World" type="Node3D"]
+[node name="World" type="Node3D" node_paths=PackedStringArray("starting_room")]
 script = ExtResource("1_m7x38")
+starting_room = NodePath("Outside/Summer")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_nbt3r")
@@ -30,7 +31,7 @@ shadow_enabled = true
 [node name="Player" parent="." instance=ExtResource("3_aytuc")]
 process_priority = -10
 process_physics_priority = -10
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 0, -5.5)
 
 [node name="Kitchen" parent="." instance=ExtResource("4_56ecv")]
 
@@ -106,6 +107,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.4544, 0.31774, -5)
 
 [node name="Tree13" parent="Outside/Summer/BirdEnvironment" instance=ExtResource("8_iuqds")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -51.9544, 0.31774, 6.5)
+
+[node name="Spawn" type="Node3D" parent="Outside/Summer" groups=["Spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72, 0.5, 6)
 
 [node name="Fall" type="Node3D" parent="Outside" groups=["Room"]]
 script = ExtResource("6_klcea")

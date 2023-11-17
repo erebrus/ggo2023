@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6jbbq5muteyp"]
+
+[ext_resource type="PackedScene" uid="uid://b3arss3lersu3" path="res://assets/kitchen/kitchen_room/kitchen_room.glb" id="1_cstob"]
+[ext_resource type="PackedScene" uid="uid://ddo5eh8r5r2am" path="res://scenes/interior/cauldron.tscn" id="2_jfhj2"]
+[ext_resource type="PackedScene" uid="uid://l8vo81p6e78a" path="res://scenes/interior/podium_and_book.tscn" id="3_6b6rl"]
+[ext_resource type="Environment" uid="uid://cc2bx5o1yk7ox" path="res://scenes/interior/wizard_environment.tres" id="4_jae5o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3m72t"]
+size = Vector3(28.5, 1, 32.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wdkk4"]
+size = Vector3(7.5, 16.5, 12.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n6ork"]
+size = Vector3(2.5, 16.5, 5.5)
+
+[node name="kitchen_room" instance=ExtResource("1_cstob")]
+
+[node name="Cauldron" parent="." index="35" instance=ExtResource("2_jfhj2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -5)
+
+[node name="podium_and_book" parent="." index="36" instance=ExtResource("3_6b6rl")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 30, 0, -4.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="37"]
+environment = ExtResource("4_jae5o")
+
+[node name="FloorBody" type="StaticBody3D" parent="." index="38"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -4)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorBody" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 5)
+shape = SubResource("BoxShape3D_3m72t")
+
+[node name="WallBody" type="StaticBody3D" parent="." index="39"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -4)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallBody" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 4.5, 1)
+shape = SubResource("BoxShape3D_wdkk4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="WallBody" index="1"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2, 4.5, 15.5)
+shape = SubResource("BoxShape3D_wdkk4")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="WallBody" index="2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 4.5, 7)
+shape = SubResource("BoxShape3D_n6ork")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="WallBody" index="3"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -7, 4.5, 7)
+shape = SubResource("BoxShape3D_n6ork")

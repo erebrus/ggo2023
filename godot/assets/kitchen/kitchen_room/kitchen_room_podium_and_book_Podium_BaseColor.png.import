@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x68svjygfmi8"
-path.s3tc="res://.godot/imported/podium_and_book_podium_and_book_Book_BaseColor.png-9b64ed88658040dca537741787de59d9.s3tc.ctex"
+uid="uid://vterxboen123"
+path.s3tc="res://.godot/imported/kitchen_room_podium_and_book_Podium_BaseColor.png-cf9091ebaae511324aa1a6460a7c21b5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://assets/kitchen/podium_book/podium_and_book_podium_and_book_Book_BaseColor.png"
-dest_files=["res://.godot/imported/podium_and_book_podium_and_book_Book_BaseColor.png-9b64ed88658040dca537741787de59d9.s3tc.ctex"]
+source_file="res://assets/kitchen/kitchen_room/kitchen_room_podium_and_book_Podium_BaseColor.png"
+dest_files=["res://.godot/imported/kitchen_room_podium_and_book_Podium_BaseColor.png-cf9091ebaae511324aa1a6460a7c21b5.s3tc.ctex"]
 
 [params]
 

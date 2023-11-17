@@ -2,13 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cw7qcmaivj4ks"
+uid="uid://c8gn225c3doyo"
 path.s3tc="res://.godot/imported/podium_and_book_podium_and_book_Book_Metallic-podium_and_book_Book_Roughness.png-60b04b81f6d99642c5f0e6e2d73b67c1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 

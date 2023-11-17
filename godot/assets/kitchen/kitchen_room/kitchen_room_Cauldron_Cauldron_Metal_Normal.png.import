@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1pic0jgn3a16"
-path.s3tc="res://.godot/imported/podium_and_book_podium_and_book_Podium_Normal.png-cf508ffc6bb8e298aa53d06cadefc069.s3tc.ctex"
+uid="uid://c67avm6tu5s61"
+path.s3tc="res://.godot/imported/kitchen_room_Cauldron_Cauldron_Metal_Normal.png-816a29567d4e043f141a1051d92c7496.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://assets/kitchen/podium_book/podium_and_book_podium_and_book_Podium_Normal.png"
-dest_files=["res://.godot/imported/podium_and_book_podium_and_book_Podium_Normal.png-cf508ffc6bb8e298aa53d06cadefc069.s3tc.ctex"]
+source_file="res://assets/kitchen/kitchen_room/kitchen_room_Cauldron_Cauldron_Metal_Normal.png"
+dest_files=["res://.godot/imported/kitchen_room_Cauldron_Cauldron_Metal_Normal.png-816a29567d4e043f141a1051d92c7496.s3tc.ctex"]
 
 [params]
 
@@ -25,7 +26,7 @@ compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=1
-roughness/src_normal="res://assets/kitchen/podium_book/podium_and_book_podium_and_book_Podium_Normal.png"
+roughness/src_normal="res://assets/kitchen/kitchen_room/kitchen_room_Cauldron_Cauldron_Metal_Normal.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
