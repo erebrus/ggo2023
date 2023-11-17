@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3 uid="uid://ce33yypgnecan"]
+
+[ext_resource type="Script" path="res://scenes/ui/recipes/recipe_board.gd" id="1_1yfci"]
+[ext_resource type="Texture2D" uid="uid://0xsak6jndigb" path="res://assets/gfx/ui/written_boards/recipe.png" id="1_16lh0"]
+[ext_resource type="PackedScene" uid="uid://c4j2b8h6nf38r" path="res://scenes/ui/recipes/text_highlight.tscn" id="2_ih104"]
+[ext_resource type="Resource" uid="uid://c5pp14vx21nt8" path="res://resources/recipe/chestnut_paste.tres" id="3_elybw"]
+[ext_resource type="Resource" uid="uid://b8lyec08fymr7" path="res://resources/recipe/cinnamon_spice.tres" id="5_dxpa6"]
+[ext_resource type="Resource" uid="uid://cfftemlpfijrk" path="res://resources/recipe/nettle_spice.tres" id="6_p3k0n"]
+[ext_resource type="Resource" uid="uid://codf6tefp2t72" path="res://resources/recipe/wild_white_glowing_asparagus.tres" id="7_s50wd"]
+[ext_resource type="Resource" uid="uid://8py4xdx5drap" path="res://resources/recipe/mint_icecream.tres" id="8_yn7gg"]
+[ext_resource type="Resource" uid="uid://bu03x106bl6y3" path="res://resources/recipe/ground_lavender.tres" id="9_0s5tb"]
+[ext_resource type="Resource" uid="uid://b3b8jehx10brk" path="res://resources/recipe/winterberry_juice.tres" id="10_fsr8g"]
+[ext_resource type="Resource" uid="uid://lv63vtxkf53r" path="res://resources/recipe/ginger_spice.tres" id="11_8xedh"]
+
+[node name="recipe_board" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1yfci")
+
+[node name="Recipe" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -687.5
+offset_top = -400.0
+offset_right = 687.5
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_16lh0")
+
+[node name="something_nutty" parent="Recipe" instance=ExtResource("2_ih104")]
+custom_minimum_size = Vector2(130, 24)
+layout_mode = 0
+offset_left = 688.5
+offset_top = 336.0
+offset_right = 818.5
+offset_bottom = 360.0
+ingridient = ExtResource("3_elybw")
+
+[node name="something_almondy" parent="Recipe" instance=ExtResource("2_ih104")]
+custom_minimum_size = Vector2(150, 24)
+layout_mode = 0
+offset_left = 857.5
+offset_top = 336.0
+offset_right = 1007.5
+offset_bottom = 360.0
+ingridient = ExtResource("5_dxpa6")
+
+[node name="stingy_leafs" parent="Recipe" instance=ExtResource("2_ih104")]
+custom_minimum_size = Vector2(80, 24)
+layout_mode = 0
+offset_left = 563.5
+offset_top = 334.0
+offset_right = 663.5
+offset_bottom = 358.0
+ingridient = ExtResource("6_p3k0n")
+
+[node name="glowing_wild" parent="Recipe" instance=ExtResource("2_ih104")]
+custom_minimum_size = Vector2(80, 24)
+layout_mode = 0
+offset_left = 375.5
+offset_top = 338.0
+offset_right = 475.5
+offset_bottom = 362.0
+ingridient = ExtResource("7_s50wd")
+
+[node name="refreshing_icey_taste" parent="Recipe" instance=ExtResource("2_ih104")]
+custom_minimum_size = Vector2(165, 24)
+layout_mode = 0
+offset_left = 257.5
+offset_top = 482.0
+offset_right = 422.5
+offset_bottom = 506.0
+ingridient = ExtResource("8_yn7gg")
+
+[node name="smell_of_fields" parent="Recipe" instance=ExtResource("2_ih104")]
+custom_minimum_size = Vector2(115, 24)
+layout_mode = 0
+offset_left = 456.5
+offset_top = 482.0
+offset_right = 556.5
+offset_bottom = 506.0
+ingridient = ExtResource("9_0s5tb")
+
+[node name="cold_juice_of_passion" parent="Recipe" instance=ExtResource("2_ih104")]
+custom_minimum_size = Vector2(120, 24)
+layout_mode = 0
+offset_left = 777.5
+offset_top = 457.0
+offset_right = 932.5
+offset_bottom = 481.0
+ingridient = ExtResource("10_fsr8g")
+
+[node name="root_plant" parent="Recipe" instance=ExtResource("2_ih104")]
+custom_minimum_size = Vector2(60, 24)
+layout_mode = 0
+offset_left = 769.5
+offset_top = 506.0
+offset_right = 849.5
+offset_bottom = 530.0
+ingridient = ExtResource("11_8xedh")
+
+[connection signal="gui_input" from="Recipe" to="." method="_on_recipe_gui_input"]

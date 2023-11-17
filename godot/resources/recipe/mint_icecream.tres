@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ingridient" load_steps=4 format=3 uid="uid://8py4xdx5drap"]
+
+[ext_resource type="Script" path="res://scenes/ui/recipes/ingridient.gd" id="1_8fcf3"]
+[ext_resource type="Texture2D" uid="uid://cbvpnu6g0jqfs" path="res://assets/gfx/ui/empty_boards/board_mint_ice_cream.png" id="1_ms2e3"]
+[ext_resource type="Texture2D" uid="uid://ceswl7kdnxjd" path="res://assets/gfx/ui/written_boards/mint_ice_cream.png" id="3_enqv2"]
+
+[resource]
+script = ExtResource("1_8fcf3")
+name = "Mint Icecream"
+haiku = ""
+empty_board_png = ExtResource("1_ms2e3")
+written_board_png = ExtResource("3_enqv2")

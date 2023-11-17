@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7cqfcoygdmyd"]
+
+[ext_resource type="Script" path="res://scenes/outside/source.gd" id="1_bwbnv"]
+
+[node name="source" type="Node3D"]
+script = ExtResource("1_bwbnv")
+
+[node name="sprite_on" type="Sprite3D" parent="."]
+billboard = 1
+shaded = true
+double_sided = false
+
+[node name="sprite_off" type="Sprite3D" parent="."]
+visible = false
+billboard = 1
+shaded = true
+double_sided = false
+
+[node name="collect_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="collect_area"]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="collect_area" to="." method="_on_collect_area_body_entered"]
+[connection signal="body_exited" from="collect_area" to="." method="_on_collect_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

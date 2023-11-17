@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Ingridient" load_steps=4 format=3 uid="uid://cfftemlpfijrk"]
+
+[ext_resource type="Texture2D" uid="uid://dmr3cd0ivaie7" path="res://assets/gfx/ui/empty_boards/song_nettle_board.png" id="1_nv2vs"]
+[ext_resource type="Script" path="res://scenes/ui/recipes/ingridient.gd" id="1_o8p5a"]
+[ext_resource type="Texture2D" uid="uid://dclho5t5u7qws" path="res://assets/gfx/ui/written_boards/nettle_spice_poem.png" id="3_mybg4"]
+
+[resource]
+script = ExtResource("1_o8p5a")
+name = "Nettle Spice"
+haiku = ""
+empty_board_png = ExtResource("1_nv2vs")
+written_board_png = ExtResource("3_mybg4")

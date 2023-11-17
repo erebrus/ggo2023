@@ -18,6 +18,9 @@ var target_quat: Basis
 var time_since_rotation_request: float = 999.0
 var processing_rotation: bool = false
 
+
+var current_source:Source
+var collecting:bool = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -41,11 +44,24 @@ func _ready():
 func _process(_delta):
 	pass
 
+func _on_collection_complete():
+	print("done collecting")
+	
+	
 func _physics_process(delta):
 
 	camera = get_tree().root.get_camera_3d()
 	time_since_rotation_request += delta
 
+	var source:Source = current_source
+	var was_collecting:=collecting
+	collecting = source != null and source.has_ingridient and Input.is_action_pressed("interact")
+	if not was_collecting and collecting:
+		source.start_collecting()
+	elif was_collecting and not collecting:
+		source.collection_complete.connect(_on_collection_complete)
+		source.stop_collecting()
+		source.collection_complete.disconnect(_on_collection_complete)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -97,3 +113,10 @@ func _physics_process(delta):
 func _on_room_entered(room: WorldRoom)->void:
 	set_billboard(room.use_player_billboard)
 
+
+
+func register_source(source:Source):
+	current_source = source
+
+func unregister_source(source:Source):
+	current_source = null
