@@ -8,13 +8,7 @@ var enabled:bool = true:
 		$crossed.visible = not val
 @export var ingridient:Ingridient
 var panel:TextureRect 
-#
-#var crossed_out:bool = false:
-#	set(val):
-#		crossed_out=val
-#		$crossed.visible = val
-#	get:
-#		return crossed_out
+
 		
 
 
