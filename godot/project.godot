@@ -18,6 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 World="*res://scenes/world/world.gd"
+Events="*res://scenes/common/events.gd"
+Global="*res://scenes/common/global.tscn"
+Types="*res://scenes/common/types.gd"
 
 [display]
 
