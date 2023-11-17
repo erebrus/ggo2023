@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlhse54d84xqb"]
+
+[ext_resource type="PackedScene" path="res://scenes/outside/source.tscn" id="1_05ggi"]
+[ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_jt1l3"]
+
+[node name="ChestnutTree" instance=ExtResource("1_05ggi")]
+
+[node name="sprite_on" parent="." index="0"]
+texture = ExtResource("2_jt1l3")
+region_enabled = true
+region_rect = Rect2(512, 64, 224, 192)
+
+[node name="sprite_off" parent="." index="1"]
+texture = ExtResource("2_jt1l3")
+region_enabled = true
+region_rect = Rect2(512, 256, 224, 192)

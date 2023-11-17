@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://mbble0m0jj77"]
+
+[ext_resource type="PackedScene" path="res://scenes/outside/source.tscn" id="1_gijx1"]
+[ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_ugr7t"]
+
+[node name="WinterberryBush" instance=ExtResource("1_gijx1")]
+
+[node name="sprite_on" parent="." index="0"]
+texture = ExtResource("2_ugr7t")
+region_enabled = true
+region_rect = Rect2(800, 192, 128, 64)
+
+[node name="sprite_off" parent="." index="1"]
+texture = ExtResource("2_ugr7t")
+region_enabled = true
+region_rect = Rect2(800, 256, 128, 64)
