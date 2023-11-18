@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlhse54d84xqb"]
+[gd_scene load_steps=5 format=3 uid="uid://dlhse54d84xqb"]
 
 [ext_resource type="PackedScene" uid="uid://o0jgb1cjcf8p" path="res://scenes/outside/source.tscn" id="1_05ggi"]
 [ext_resource type="Resource" uid="uid://b385ioa8o38yo" path="res://scenes/outside/chestnut_ingredient.tres" id="2_13ko4"]
 [ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_jt1l3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0put6"]
+size = Vector3(6.16477, 5.94836, 5.69522)
 
 [node name="ChestnutTree" instance=ExtResource("1_05ggi")]
 ingridient = ExtResource("2_13ko4")
@@ -18,3 +21,9 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 texture = ExtResource("2_jt1l3")
 region_enabled = true
 region_rect = Rect2(512, 256, 224, 192)
+
+[node name="collect_area" parent="." index="2"]
+collision_mask = 4
+
+[node name="CollisionShape3D" parent="collect_area" index="0"]
+shape = SubResource("BoxShape3D_0put6")

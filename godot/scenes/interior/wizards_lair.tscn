@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cgpv4xh01a8my"]
+[gd_scene load_steps=23 format=3 uid="uid://cgpv4xh01a8my"]
 
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_ci51e"]
 [ext_resource type="Script" path="res://scenes/world/world_room.gd" id="1_xd5v1"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dn6tdnb3anm2a" path="res://scenes/interior/portal_room.tscn" id="9_inkr1"]
 [ext_resource type="PackedScene" uid="uid://blr73bbj3y46v" path="res://scenes/interior/portal.tscn" id="10_0aeb0"]
 [ext_resource type="PackedScene" uid="uid://bgfx4r6c0pbvg" path="res://scenes/player/player_camera.tscn" id="11_2rq6k"]
+[ext_resource type="PackedScene" uid="uid://ce33yypgnecan" path="res://scenes/ui/recipes/recipe_board.tscn" id="12_akm11"]
 
 [sub_resource type="FogMaterial" id="FogMaterial_rpso0"]
 density = 1.0944
@@ -214,5 +215,8 @@ swap_time = 1.0
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_2rq6k")]
 player = NodePath("../Player")
+
+[node name="recipe_board" parent="." instance=ExtResource("12_akm11")]
+visible = false
 
 [editable path="Kitchen/KitchenCamera"]

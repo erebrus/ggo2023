@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://8ehyrqdtygxw"]
+[gd_scene load_steps=17 format=3 uid="uid://8ehyrqdtygxw"]
 
 [ext_resource type="Script" path="res://scenes/world/world_room.gd" id="1_geyfg"]
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_kfnlh"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bvm3r6gb7wc2d" path="res://scenes/outside/asparagus.tscn" id="6_w6e36"]
 [ext_resource type="PackedScene" uid="uid://bgfx4r6c0pbvg" path="res://scenes/player/player_camera.tscn" id="7_hvpb6"]
 [ext_resource type="PackedScene" uid="uid://blr73bbj3y46v" path="res://scenes/interior/portal.tscn" id="8_mwscy"]
+[ext_resource type="PackedScene" uid="uid://ce33yypgnecan" path="res://scenes/ui/recipes/recipe_board.tscn" id="11_2ld6u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dkgch"]
 sky_top_color = Color(0.368627, 0.392157, 0.811765, 1)
@@ -181,3 +182,6 @@ time_to_rotate = 0.1
 
 [node name="Player" parent="." instance=ExtResource("4_uu7ny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 0)
+
+[node name="recipe_board" parent="." instance=ExtResource("11_2ld6u")]
+visible = false

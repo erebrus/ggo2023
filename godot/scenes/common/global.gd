@@ -1,6 +1,8 @@
 extends Node
 
-var found_ingridients:Array[String]=["Chestnut Paste"]
+var found_ingridients:Array[String]=[
+#	"Chestnut Paste"
+	]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

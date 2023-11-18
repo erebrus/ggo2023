@@ -20,6 +20,7 @@ func _ready():
 func _on_collect_area_body_entered(body):
 	if body.is_in_group("Player"):
 		body.register_source(self)
+		print("player next to %s" % name)
 
 func _on_collect_area_body_exited(body):
 	if body.is_in_group("Player"):
@@ -27,10 +28,15 @@ func _on_collect_area_body_exited(body):
 		
 func start_collecting():
 	$Timer.start()
+	print("starting collection")
 	
 func stop_collecting():
-	$Timer.cancel()
+	if not $Timer.is_stopped():
+		$Timer.stop()
+		print(" collection cancelled")
 
 func _on_timer_timeout():
 	has_ingridient=false
+#	print("%s %s" % [$sprite_on.visible, $sprite_off.visible])
 	collection_complete.emit()
+	print("collection done")

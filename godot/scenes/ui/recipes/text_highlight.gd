@@ -45,6 +45,9 @@ func _on_gui_input(event):
 				open_haiku()
 				Events.haiku_displayed.emit()
 
+func is_open():
+	return panel.visible
+
 func close_haiku():
 	panel.visible=false
 	

@@ -57,37 +57,39 @@ func _physics_process(delta):
 	var was_collecting:=collecting
 	collecting = source != null and source.has_ingridient and Input.is_action_pressed("interact")
 	if not was_collecting and collecting:
+		source.collection_complete.connect(_on_collection_complete)
 		source.start_collecting()
 	elif was_collecting and not collecting:
-		source.collection_complete.connect(_on_collection_complete)
+
 		source.stop_collecting()
 		source.collection_complete.disconnect(_on_collection_complete)
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+	if not collecting:
+		# Handle Jump.
+		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = Vector3.ZERO
-	if camera:
-		direction = (camera.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y))
-		direction.y = 0
-		direction = direction.normalized()
-	else:
-		direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
+		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var direction = Vector3.ZERO
+		if camera:
+			direction = (camera.global_transform.basis * Vector3(input_dir.x, 0, input_dir.y))
+			direction.y = 0
+			direction = direction.normalized()
+		else:
+			direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
-	if direction:
-		sprite.flip_h = true if input_dir.x > 0 else false
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		if direction:
+			sprite.flip_h = true if input_dir.x > 0 else false
+			velocity.x = direction.x * SPEED
+			velocity.z = direction.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 
 	if Input.is_action_just_pressed("rotate_clockwise") and not processing_rotation:
