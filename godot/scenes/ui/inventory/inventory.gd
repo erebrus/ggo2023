@@ -8,6 +8,7 @@ func _ready():
 	for i in range(Global.INVENTORY_SIZE):
 		$vbox.add_child(itemScene.instantiate())
 	Events.inventory_updated.connect(update_inventory)
+	Events.item_drop_requested.connect(on_item_drop_requested)
 	update_inventory()
 
 func _process(_delta):
@@ -17,15 +18,17 @@ func _process(_delta):
 		else:
 			selected_idx = wrap(selected_idx+1, 0, Global.inventory.size())
 		update_selection()
-	if Input.is_action_just_pressed("drop"):
-		Global.discard_item(selected_idx)
-		if Global.inventory.is_empty():
-			selected_idx=-1
-		else:
-			selected_idx = wrap(selected_idx, 0, Global.inventory.size())
-		update_selection()
 		
-
+func on_item_drop_requested():
+		var i:Ingridient=Global.discard_item(selected_idx)
+		if i != null :
+			if Global.inventory.is_empty():
+				selected_idx=-1
+			else:
+				selected_idx = wrap(selected_idx, 0, Global.inventory.size())
+			update_selection()
+			Events.item_dropped.emit(i)			
+	
 func update_inventory():
 	for i in range($vbox.get_child_count())	:
 		if i >= Global.inventory.size():

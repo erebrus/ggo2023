@@ -20,7 +20,11 @@ var processing_rotation: bool = false
 
 
 var current_source:Source
+#TODO replace by XSM
 var collecting:bool = false
+var prepping:bool = false
+var can_prep:bool = false
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -32,6 +36,7 @@ func set_billboard(enabled: bool)->void:
 		sprite.billboard = BaseMaterial3D.BILLBOARD_ENABLED if enabled else BaseMaterial3D.BILLBOARD_DISABLED
 
 func _ready():
+	Events.item_dropped.connect(_on_item_dropped)
 	var rooms = get_tree().get_nodes_in_group("Room")
 	for room in rooms:
 		room.room_entered.connect(_on_room_entered)
@@ -72,6 +77,10 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	if not collecting:
+		
+		if Input.is_action_just_pressed("drop"):
+			Events.item_drop_requested.emit()
+			
 		# Handle Jump.
 		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 			velocity.y = JUMP_VELOCITY
@@ -126,3 +135,9 @@ func register_source(source:Source):
 
 func unregister_source(source:Source):
 	current_source = null
+
+func _on_item_dropped(i:Ingridient):
+	if prepping:
+		if not Global.add_to_prep_table(i):
+			Global.add_to_inventory(i)
+			Global.show_message("Prep table full")

@@ -7,7 +7,7 @@ class_name Ingridient
 @export var empty_board_png:Texture
 @export var written_board_png:Texture
 @export var raw_icon_png:Texture
-
+@export var prepare_action:String="Grind"
 
 
 
