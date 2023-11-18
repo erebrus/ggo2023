@@ -1,9 +1,12 @@
 extends MarginContainer
 class_name Inventory
 
+const itemScene:PackedScene = preload("res://scenes/ui/inventory/inventory_item.tscn")
 var selected_idx:int = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for i in range(Global.INVENTORY_SIZE):
+		$vbox.add_child(itemScene.instantiate())
 	Events.inventory_updated.connect(update_inventory)
 	update_inventory()
 

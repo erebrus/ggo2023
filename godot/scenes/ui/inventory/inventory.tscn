@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dr5w3nh7csl0c"]
+[gd_scene load_steps=2 format=3 uid="uid://dr5w3nh7csl0c"]
 
 [ext_resource type="Script" path="res://scenes/ui/inventory/inventory.gd" id="1_ecdqm"]
-[ext_resource type="PackedScene" uid="uid://b6m3jb5r3oqfp" path="res://scenes/ui/inventory/inventory_item.tscn" id="1_qvvdm"]
 
 [node name="inventory" type="MarginContainer"]
 custom_minimum_size = Vector2(64, 128)
@@ -20,15 +19,3 @@ script = ExtResource("1_ecdqm")
 [node name="vbox" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 10
-
-[node name="inventory_item1" parent="vbox" instance=ExtResource("1_qvvdm")]
-layout_mode = 2
-
-[node name="inventory_item2" parent="vbox" instance=ExtResource("1_qvvdm")]
-layout_mode = 2
-
-[node name="inventory_item3" parent="vbox" instance=ExtResource("1_qvvdm")]
-layout_mode = 2
-
-[node name="inventory_item4" parent="vbox" instance=ExtResource("1_qvvdm")]
-layout_mode = 2
