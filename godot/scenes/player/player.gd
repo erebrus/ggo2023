@@ -1,14 +1,22 @@
 class_name PlayerController extends CharacterBody3D
 
-
 const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 
-@onready var sprite: Sprite3D = $Sprite3D
+@onready var sprite: Sprite3D = $BodyPivot/Sprite3D
 
 var camera: Camera3D
-@onready var virtual_bird_camera = $BirdCamera
-@onready var virtual_close_camera = $CloseCamera
+@onready var virtual_bird_camera = $BodyPivot/BirdCamera
+@onready var virtual_close_camera = $BodyPivot/CloseCamera
+@onready var body_pivot: Node3D = $BodyPivot
+
+var body_quat: Basis
+var target_quat: Basis
+
+@export var rotation_amount: float = 45
+@export var time_to_rotate: float = .2
+var time_since_rotation_request: float = 999.0
+var processing_rotation: bool = false
 
 
 var current_source:Source
@@ -31,6 +39,7 @@ func _ready():
 	# set virtual camera z-offsets, since these are always determined by the player scene
 	virtual_bird_camera.z_offset = virtual_bird_camera.position.z
 	virtual_close_camera.z_offset = virtual_close_camera.position.z
+	target_quat = body_pivot.transform.basis
 
 func _process(_delta):
 	pass
@@ -42,6 +51,7 @@ func _on_collection_complete():
 func _physics_process(delta):
 
 	camera = get_tree().root.get_camera_3d()
+	time_since_rotation_request += delta
 
 	var source:Source = current_source
 	var was_collecting:=collecting
@@ -78,6 +88,25 @@ func _physics_process(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+
+	if Input.is_action_just_pressed("rotate_clockwise") and not processing_rotation:
+		print("HELLO?")
+		time_since_rotation_request = 0
+		body_quat  = body_pivot.transform.basis
+		target_quat = Basis(body_quat.rotated(Vector3(0,1,0), deg_to_rad(rotation_amount)))
+		processing_rotation = true
+	elif Input.is_action_just_pressed("rotate_countercwise") and not processing_rotation:
+		time_since_rotation_request = 0
+		body_quat  = body_pivot.transform.basis
+		target_quat = Basis(body_quat.rotated(Vector3(0,1,0), deg_to_rad(-rotation_amount)))
+		processing_rotation = true
+	
+	var rot_delta: float = min(1, time_since_rotation_request / time_to_rotate)
+	var slerp_quat = body_quat.slerp(target_quat, min(1, time_since_rotation_request / time_to_rotate))
+	body_pivot.transform.basis = Basis(slerp_quat)
+	if rot_delta == 1 and processing_rotation:
+		processing_rotation = false
 
 	move_and_slide()
 

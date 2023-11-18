@@ -1,0 +1,36 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://bbjm7bo26m4sr"
+path.s3tc="res://.godot/imported/kitchen_room_podium_and_book_Page.png-2e89fa2a1aa704c7e4e3310717c09d00.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={}
+
+[deps]
+
+source_file="res://assets/kitchen/kitchen_room/kitchen_room_podium_and_book_Page.png"
+dest_files=["res://.godot/imported/kitchen_room_podium_and_book_Page.png-2e89fa2a1aa704c7e4e3310717c09d00.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://assets/kitchen/kitchen_room/kitchen_room_podium_and_book_Page.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

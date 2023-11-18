@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvm3r6gb7wc2d"]
+
+[ext_resource type="PackedScene" uid="uid://o0jgb1cjcf8p" path="res://scenes/outside/source.tscn" id="1_1oh26"]
+[ext_resource type="Resource" uid="uid://b7oh1fsvcdtly" path="res://scenes/outside/asparagus_ingredient.tres" id="2_o54yy"]
+[ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_ohv8t"]
+
+[node name="Asparagus" instance=ExtResource("1_1oh26")]
+ingridient = ExtResource("2_o54yy")
+
+[node name="sprite_on" parent="." index="0"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+texture = ExtResource("2_ohv8t")
+region_enabled = true
+region_rect = Rect2(1024, 224, 32, 32)
+
+[node name="sprite_off" parent="." index="1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+texture = ExtResource("2_ohv8t")
+region_enabled = true
+region_rect = Rect2(1024, 256, 32, 32)

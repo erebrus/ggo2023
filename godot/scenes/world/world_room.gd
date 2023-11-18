@@ -10,6 +10,7 @@ var hide_on_enter: Array[Node3D]
 var hide_on_exit: Array[Node3D]
 
 @export var room_environment_override: Environment
+@export var allow_player_rotation = false
 @export var use_player_billboard = false
 
 # Called when the node enters the scene tree for the first time.
@@ -23,7 +24,7 @@ func assign_node(node: Node)->void:
 	if node is RoomCamera:
 		assert(node.is_in_group("Camera"), "Camera isn't in camera group!")
 		room_camera = node
-	if node is Area3D:
+	if node is Area3D and node.is_in_group("RoomArea"):
 		var area = node as Area3D
 		room_area = node
 		room_area.body_entered.connect(on_room_area_entered)

@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://i7lbebf0dbgi"]
+
+[ext_resource type="Texture2D" uid="uid://b0i1ut2h50ww0" path="res://assets/skelly/skelly_fake_sprite.png" id="1_du6wc"]
+
+[resource]
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_du6wc")
+rim_enabled = true
+rim = 0.5
