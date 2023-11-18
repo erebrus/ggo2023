@@ -92,6 +92,7 @@ interact={
 3d_physics/layer_1="Walls"
 3d_physics/layer_2="Floors"
 3d_physics/layer_3="Player"
+3d_physics/layer_4="Portal"
 
 [physics]
 

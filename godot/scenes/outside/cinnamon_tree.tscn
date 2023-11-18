@@ -1,16 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ig1ql2gfqi5k"]
+[gd_scene load_steps=4 format=3 uid="uid://ig1ql2gfqi5k"]
 
 [ext_resource type="PackedScene" uid="uid://o0jgb1cjcf8p" path="res://scenes/outside/source.tscn" id="1_bo8ek"]
+[ext_resource type="Resource" uid="uid://cljpme4gmjfjx" path="res://scenes/outside/cinnamon_bark_ingredient.tres" id="2_1fp6s"]
 [ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_k7c6y"]
 
 [node name="CinnamonTree" instance=ExtResource("1_bo8ek")]
+ingridient = ExtResource("2_1fp6s")
 
 [node name="sprite_on" parent="." index="0"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 texture = ExtResource("2_k7c6y")
 region_enabled = true
 region_rect = Rect2(128, 0, 256, 256)
 
 [node name="sprite_off" parent="." index="1"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 texture = ExtResource("2_k7c6y")
 region_enabled = true
 region_rect = Rect2(128, 256, 256, 256)

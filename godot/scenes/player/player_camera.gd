@@ -69,6 +69,9 @@ func _on_room_entered(room: WorldRoom)->void:
 	swap_camera(next_virtual, next_swap_time)
 
 func swap_camera(next_virtual: RoomCamera, in_swap_time: float)->void:
+	if not active_virtual:
+		transform.basis = next_virtual.global_transform.basis
+		global_position = next_virtual.global_position
 	active_virtual = next_virtual
 	initial_pos = global_position
 	target_pos = active_virtual.global_position

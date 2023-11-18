@@ -24,7 +24,7 @@ func assign_node(node: Node)->void:
 	if node is RoomCamera:
 		assert(node.is_in_group("Camera"), "Camera isn't in camera group!")
 		room_camera = node
-	if node is Area3D:
+	if node is Area3D and node.is_in_group("RoomArea"):
 		var area = node as Area3D
 		room_area = node
 		room_area.body_entered.connect(on_room_area_entered)

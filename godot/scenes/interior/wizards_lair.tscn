@@ -130,7 +130,7 @@ visibility_aabb = AABB(-15.5, -13.5, -10.5, 31, 27, 21)
 process_material = SubResource("ParticleProcessMaterial_7i2ln")
 draw_pass_1 = SubResource("SphereMesh_na8no")
 
-[node name="Area3D" type="Area3D" parent="Kitchen"]
+[node name="Area3D" type="Area3D" parent="Kitchen" groups=["RoomArea"]]
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Kitchen/Area3D"]
@@ -181,6 +181,7 @@ transform = Transform3D(-1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, -1, 57, 0,
 
 [node name="Portal" parent="PortalRoom/Environment" instance=ExtResource("10_0aeb0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6, -13.5)
+target_scene = "res://scenes/outside/fall.tscn"
 
 [node name="FogVolume" type="FogVolume" parent="PortalRoom/Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 24.5, -42.5)
@@ -197,7 +198,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, -37.745, -9.935)
 size = Vector3(35.5, 80, 210.5)
 material = SubResource("FogMaterial_nvqdk")
 
-[node name="Area3D" type="Area3D" parent="PortalRoom"]
+[node name="Area3D" type="Area3D" parent="PortalRoom" groups=["RoomArea"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
 collision_mask = 4
 
@@ -207,6 +208,9 @@ shape = SubResource("BoxShape3D_ai8mm")
 
 [node name="PortalCamera" parent="PortalRoom" groups=["Camera"] instance=ExtResource("6_45y2x")]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 10.5, 12)
+lock_x = true
+lock_z = true
+swap_time = 1.0
 
 [node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_2rq6k")]
 player = NodePath("../Player")

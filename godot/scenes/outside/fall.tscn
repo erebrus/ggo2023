@@ -1,0 +1,183 @@
+[gd_scene load_steps=16 format=3 uid="uid://8ehyrqdtygxw"]
+
+[ext_resource type="Script" path="res://scenes/world/world_room.gd" id="1_geyfg"]
+[ext_resource type="Script" path="res://scenes/world/world.gd" id="1_kfnlh"]
+[ext_resource type="PackedScene" uid="uid://dlhse54d84xqb" path="res://scenes/outside/chestnut_tree.tscn" id="1_wlsxk"]
+[ext_resource type="PackedScene" uid="uid://ig1ql2gfqi5k" path="res://scenes/outside/cinnamon_tree.tscn" id="2_lxlcp"]
+[ext_resource type="MeshLibrary" uid="uid://co003aun3knhg" path="res://assets/custom_resources/outside_tileset.tres" id="3_5t2oa"]
+[ext_resource type="PackedScene" uid="uid://bgcje5nt6qvuq" path="res://scenes/player/player.tscn" id="4_uu7ny"]
+[ext_resource type="PackedScene" uid="uid://mbble0m0jj77" path="res://scenes/outside/winterberry_bush.tscn" id="5_6lctk"]
+[ext_resource type="PackedScene" uid="uid://bvm3r6gb7wc2d" path="res://scenes/outside/asparagus.tscn" id="6_w6e36"]
+[ext_resource type="PackedScene" uid="uid://bgfx4r6c0pbvg" path="res://scenes/player/player_camera.tscn" id="7_hvpb6"]
+[ext_resource type="PackedScene" uid="uid://blr73bbj3y46v" path="res://scenes/interior/portal.tscn" id="8_mwscy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dkgch"]
+sky_top_color = Color(0.368627, 0.392157, 0.811765, 1)
+sky_horizon_color = Color(0.87451, 0.490196, 0.372549, 1)
+sky_curve = 0.15529
+sky_energy_multiplier = 10.7
+
+[sub_resource type="Sky" id="Sky_8fqn1"]
+sky_material = SubResource("ProceduralSkyMaterial_dkgch")
+
+[sub_resource type="Environment" id="Environment_wf8ih"]
+background_mode = 2
+background_energy_multiplier = 0.49
+sky = SubResource("Sky_8fqn1")
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+
+[sub_resource type="FogMaterial" id="FogMaterial_4u618"]
+density = 0.02
+albedo = Color(0.709804, 0.380392, 0.239216, 1)
+emission = Color(0.984314, 0.596078, 0.435294, 1)
+height_falloff = 1e-05
+edge_fade = 0.14766
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dp1qi"]
+size = Vector3(45.5, 22, 79.5)
+
+[node name="Outside" type="Node3D" node_paths=PackedStringArray("starting_room")]
+script = ExtResource("1_kfnlh")
+starting_room = NodePath("Fall")
+
+[node name="Fall" type="Node3D" parent="." groups=["Room"]]
+script = ExtResource("1_geyfg")
+
+[node name="Foliage" type="Node3D" parent="Fall"]
+
+[node name="ChestnutTree" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="ChestnutTree2" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 3, 17.5)
+
+[node name="ChestnutTree3" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 3, 12)
+
+[node name="ChestnutTree4" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 3, -14.5)
+
+[node name="ChestnutTree5" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3, 20)
+
+[node name="ChestnutTree6" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 3, -2)
+
+[node name="ChestnutTree7" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 3, 23.5)
+
+[node name="ChestnutTree8" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, 6.5)
+
+[node name="ChestnutTree9" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 3, 6.5)
+
+[node name="ChestnutTree10" parent="Fall/Foliage" instance=ExtResource("1_wlsxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 15)
+
+[node name="CinnamonTree" parent="Fall/Foliage" instance=ExtResource("2_lxlcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, -6.5)
+
+[node name="CinnamonTree2" parent="Fall/Foliage" instance=ExtResource("2_lxlcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4, -11)
+
+[node name="CinnamonTree3" parent="Fall/Foliage" instance=ExtResource("2_lxlcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -11.5)
+
+[node name="CinnamonTree4" parent="Fall/Foliage" instance=ExtResource("2_lxlcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4, 2.5)
+
+[node name="CinnamonTree5" parent="Fall/Foliage" instance=ExtResource("2_lxlcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 4, -4)
+
+[node name="CinnamonTree6" parent="Fall/Foliage" instance=ExtResource("2_lxlcp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, 10)
+
+[node name="WinterberryBush" parent="Fall/Foliage" instance=ExtResource("5_6lctk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 23.5)
+
+[node name="WinterberryBush2" parent="Fall/Foliage" instance=ExtResource("5_6lctk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 1, 23.5)
+
+[node name="WinterberryBush3" parent="Fall/Foliage" instance=ExtResource("5_6lctk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 1, 5)
+
+[node name="WinterberryBush4" parent="Fall/Foliage" instance=ExtResource("5_6lctk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 1, 18.5)
+
+[node name="WinterberryBush5" parent="Fall/Foliage" instance=ExtResource("5_6lctk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, 1, 11.5)
+
+[node name="WinterberryBush6" parent="Fall/Foliage" instance=ExtResource("5_6lctk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 1, 19.5)
+
+[node name="WinterberryBush7" parent="Fall/Foliage" instance=ExtResource("5_6lctk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 1, -19)
+
+[node name="WinterberryBush8" parent="Fall/Foliage" instance=ExtResource("5_6lctk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 1, 10.5)
+
+[node name="Asparagus" parent="Fall/Foliage" instance=ExtResource("6_w6e36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0.5, 6.5)
+
+[node name="Asparagus2" parent="Fall/Foliage" instance=ExtResource("6_w6e36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5, 0.5, 2)
+
+[node name="Asparagus3" parent="Fall/Foliage" instance=ExtResource("6_w6e36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 0.5, 2)
+
+[node name="Asparagus4" parent="Fall/Foliage" instance=ExtResource("6_w6e36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 0.5, 4.5)
+
+[node name="Asparagus5" parent="Fall/Foliage" instance=ExtResource("6_w6e36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.5, 0.5, 6.5)
+
+[node name="Asparagus6" parent="Fall/Foliage" instance=ExtResource("6_w6e36")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5, 0.5, 4)
+
+[node name="GridMap" type="GridMap" parent="Fall"]
+mesh_library = ExtResource("3_5t2oa")
+cell_size = Vector3(4, 8, 4)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65534, 0, 2, 65534, 1, 2, 65535, 1, 2, 1, 1, 2, 0, 1, 2, 1, 65535, 2, 0, 65535, 2, 65535, 65535, 2, 65534, 65535, 2, 0, 0, 2, 65535, 0, 2, 1, 0, 2, 2, 1, 2, 3, 1, 2, 3, 0, 2, 2, 0, 2, 2, 65535, 2, 3, 65535, 2, 4, 65535, 2, 5, 65535, 2, 5, 0, 2, 4, 0, 2, 4, 1, 2, 65533, 1, 2, 65533, 0, 2, 65532, 0, 2, 65532, 65535, 2, 65533, 65535, 2, 65533, 65534, 2, 65534, 65534, 2, 65535, 65534, 2, 0, 65534, 2, 2, 65534, 2, 3, 65534, 2, 4, 65534, 2, 1, 65534, 2, 5, 65534, 2, 5, 65533, 2, 4, 65533, 2, 3, 65533, 2, 2, 65533, 2, 1, 65533, 2, 0, 65533, 2, 65535, 65533, 2, 65534, 65533, 2, 65533, 65533, 2, 65532, 65533, 2, 65531, 65533, 2, 65531, 65534, 2, 65532, 65534, 2, 65531, 65535, 2, 65530, 65535, 2, 65530, 0, 2, 65530, 1, 2, 65531, 1, 2, 65531, 0, 2, 65532, 1, 2, 65530, 65534, 2, 65530, 65533, 2, 5, 1, 2, 5, 65532, 2, 4, 65532, 2, 3, 65532, 2, 2, 65532, 2, 1, 65532, 2, 0, 65532, 2, 65535, 65532, 2, 65534, 65532, 2, 65533, 65532, 2, 65532, 65532, 2, 65531, 65532, 2, 65530, 65532, 2, 65530, 2, 2, 65531, 2, 2, 65532, 2, 2, 65533, 2, 2, 65534, 2, 2, 65535, 2, 2, 0, 2, 2, 1, 2, 2, 2, 2, 2, 3, 2, 2, 4, 2, 2, 5, 2, 2, 5, 3, 2, 5, 4, 2, 4, 4, 2, 3, 4, 2, 2, 4, 2, 1, 4, 2, 0, 4, 2, 65535, 4, 2, 65534, 4, 2, 65533, 4, 2, 65532, 4, 2, 65531, 4, 2, 65530, 4, 2, 65530, 3, 2, 65531, 3, 2, 65532, 3, 2, 65533, 3, 2, 65534, 3, 2, 65535, 3, 2, 0, 3, 2, 1, 3, 2, 2, 3, 2, 3, 3, 2, 4, 3, 2, 65530, 5, 2, 65531, 5, 2, 65532, 5, 2, 65533, 5, 2, 65534, 5, 2, 65535, 5, 2, 0, 5, 2, 1, 5, 2, 2, 5, 2, 3, 5, 2, 4, 5, 2, 5, 5, 2, 5, 6, 2, 4, 6, 2, 3, 6, 2, 3, 7, 2, 2, 7, 2, 1, 7, 2, 0, 7, 2, 65535, 7, 2, 65535, 6, 2, 65534, 6, 2, 65533, 6, 2, 65532, 6, 2, 65531, 6, 2, 65530, 6, 2, 65530, 7, 2, 65531, 7, 2, 65532, 7, 2, 65533, 7, 2, 65534, 7, 2, 4, 7, 2, 5, 7, 2, 2, 6, 2, 1, 6, 2, 0, 6, 2, 5, 65531, 2, 4, 65531, 2, 4, 65530, 2, 3, 65531, 2, 2, 65531, 2, 2, 65530, 2, 1, 65530, 2, 0, 65530, 2, 65535, 65530, 2, 65534, 65530, 2, 65533, 65530, 2, 65532, 65530, 2, 65531, 65530, 2, 65531, 65531, 2, 65530, 65531, 2, 1, 65531, 2, 0, 65531, 2, 65535, 65531, 2, 65534, 65531, 2, 65533, 65531, 2, 65532, 65531, 2, 3, 65530, 2, 5, 65530, 2, 65530, 65530, 2)
+}
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Fall"]
+environment = SubResource("Environment_wf8ih")
+
+[node name="Spawn" type="Node3D" parent="Fall" groups=["Spawn"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 3)
+
+[node name="Portal" parent="Fall" instance=ExtResource("8_mwscy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21, 6.5, 0)
+target_scene = "res://scenes/interior/wizards_lair.tscn"
+
+[node name="Lights" type="Node3D" parent="Fall"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Fall/Lights"]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, -3.5, 7, 21)
+light_color = Color(0.913725, 0.831373, 0.47451, 1)
+light_energy = 1.22
+shadow_enabled = true
+
+[node name="FogVolume" type="FogVolume" parent="Fall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0)
+size = Vector3(44.5, 13.5, 64.5)
+material = SubResource("FogMaterial_4u618")
+
+[node name="Area3D" type="Area3D" parent="Fall" groups=["RoomArea"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Fall/Area3D"]
+shape = SubResource("BoxShape3D_dp1qi")
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_hvpb6")]
+transform = Transform3D(-5.96046e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1, 0, 0, -19.5, 18, 0)
+player = NodePath("../Player")
+rotation_speed = 5.0
+time_to_rotate = 0.1
+
+[node name="Player" parent="." instance=ExtResource("4_uu7ny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 0)
