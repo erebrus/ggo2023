@@ -6,6 +6,7 @@ class_name Ingridient
 @export_multiline var haiku:String
 @export var empty_board_png:Texture
 @export var written_board_png:Texture
+@export var raw_icon_png:Texture
 
 
 

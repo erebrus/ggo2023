@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6m3jb5r3oqfp"]
+
+[ext_resource type="Script" path="res://scenes/ui/inventory/inventory_item.gd" id="1_3nbd5"]
+[ext_resource type="Texture2D" uid="uid://ck53qxtflu5xt" path="res://assets/gfx/ui/inventory/icon_selection_outline.png" id="1_c2yld"]
+[ext_resource type="Texture2D" uid="uid://chmuattsatq4m" path="res://assets/gfx/ui/inventory/chestnut_icon.png" id="2_xpwgd"]
+
+[node name="inventory_item" type="Control"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3nbd5")
+
+[node name="outline" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_c2yld")
+
+[node name="icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_xpwgd")

@@ -45,7 +45,8 @@ func _process(_delta):
 	pass
 
 func _on_collection_complete():
-	print("done collecting")
+	Global.show_message("done collecting")
+	Global.add_to_inventory(current_source.ingridient)
 	
 	
 func _physics_process(delta):
@@ -57,8 +58,11 @@ func _physics_process(delta):
 	var was_collecting:=collecting
 	collecting = source != null and source.has_ingridient and Input.is_action_pressed("interact")
 	if not was_collecting and collecting:
-		source.collection_complete.connect(_on_collection_complete)
-		source.start_collecting()
+		if Global.is_inventory_full():
+			Global.show_message("No space in inventory")
+		else:
+			source.collection_complete.connect(_on_collection_complete)
+			source.start_collecting()
 	elif was_collecting and not collecting:
 
 		source.stop_collecting()
