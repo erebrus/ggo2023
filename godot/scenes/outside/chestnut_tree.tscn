@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlhse54d84xqb"]
 
-[ext_resource type="PackedScene" path="res://scenes/outside/source.tscn" id="1_05ggi"]
+[ext_resource type="PackedScene" uid="uid://o0jgb1cjcf8p" path="res://scenes/outside/source.tscn" id="1_05ggi"]
 [ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_jt1l3"]
 
 [node name="ChestnutTree" instance=ExtResource("1_05ggi")]

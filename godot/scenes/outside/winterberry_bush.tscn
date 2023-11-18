@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://mbble0m0jj77"]
 
-[ext_resource type="PackedScene" path="res://scenes/outside/source.tscn" id="1_gijx1"]
+[ext_resource type="PackedScene" uid="uid://o0jgb1cjcf8p" path="res://scenes/outside/source.tscn" id="1_gijx1"]
 [ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_ugr7t"]
 
 [node name="WinterberryBush" instance=ExtResource("1_gijx1")]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ig1ql2gfqi5k"]
 
-[ext_resource type="PackedScene" path="res://scenes/outside/source.tscn" id="1_bo8ek"]
+[ext_resource type="PackedScene" uid="uid://o0jgb1cjcf8p" path="res://scenes/outside/source.tscn" id="1_bo8ek"]
 [ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_k7c6y"]
 
 [node name="CinnamonTree" instance=ExtResource("1_bo8ek")]

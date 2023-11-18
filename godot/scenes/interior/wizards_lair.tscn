@@ -1,21 +1,56 @@
-[gd_scene load_steps=16 format=3 uid="uid://cgpv4xh01a8my"]
+[gd_scene load_steps=22 format=3 uid="uid://cgpv4xh01a8my"]
 
-[ext_resource type="MeshLibrary" uid="uid://drxqp3hhotdb2" path="res://assets/custom_resources/kitchen_tileset.tres" id="1_2k3ua"]
 [ext_resource type="Script" path="res://scenes/world/world.gd" id="1_ci51e"]
 [ext_resource type="Script" path="res://scenes/world/world_room.gd" id="1_xd5v1"]
 [ext_resource type="PackedScene" uid="uid://bgcje5nt6qvuq" path="res://scenes/player/player.tscn" id="2_gsdye"]
-[ext_resource type="Script" path="res://scenes/interior/room_camera.gd" id="3_0wltp"]
 [ext_resource type="PackedScene" uid="uid://l8vo81p6e78a" path="res://scenes/interior/podium_and_book.tscn" id="4_oll0f"]
 [ext_resource type="PackedScene" uid="uid://c7nthqnfkovcn" path="res://scenes/world/world_camera.tscn" id="6_45y2x"]
 [ext_resource type="PackedScene" uid="uid://b6jbbq5muteyp" path="res://assets/kitchen/kitchen_room/kitchen_room.tscn" id="6_uubcl"]
 [ext_resource type="Environment" uid="uid://cc2bx5o1yk7ox" path="res://scenes/interior/wizard_environment.tres" id="7_ao7ac"]
 [ext_resource type="Environment" uid="uid://byaxvi8vi3lrq" path="res://assets/custom_resources/kitchen_environment.tres" id="7_g80ca"]
+[ext_resource type="PackedScene" uid="uid://dn6tdnb3anm2a" path="res://scenes/interior/portal_room.tscn" id="9_inkr1"]
+[ext_resource type="PackedScene" uid="uid://blr73bbj3y46v" path="res://scenes/interior/portal.tscn" id="10_0aeb0"]
+[ext_resource type="PackedScene" uid="uid://bgfx4r6c0pbvg" path="res://scenes/player/player_camera.tscn" id="11_2rq6k"]
 
 [sub_resource type="FogMaterial" id="FogMaterial_rpso0"]
 density = 1.0944
 albedo = Color(0, 0, 0, 1)
 height_falloff = 0.532322
 edge_fade = 0.492459
+
+[sub_resource type="FogMaterial" id="FogMaterial_nvqdk"]
+density = -8.0
+albedo = Color(0, 0, 0, 1)
+height_falloff = 0.00040786
+edge_fade = 1e-05
+
+[sub_resource type="Gradient" id="Gradient_stmjt"]
+offsets = PackedFloat32Array(0, 0.282548, 0.628809, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.509804, 1, 1, 1, 0.623529, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5cgwo"]
+gradient = SubResource("Gradient_stmjt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7i2ln"]
+emission_shape = 3
+emission_box_extents = Vector3(5, 5, 10)
+gravity = Vector3(0, -0.1, 0)
+color = Color(0.835294, 0.643137, 0.329412, 1)
+color_ramp = SubResource("GradientTexture1D_5cgwo")
+turbulence_enabled = true
+turbulence_noise_strength = 3.69
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4s5fo"]
+transparency = 1
+albedo_color = Color(0.984314, 0.8, 0.482353, 1)
+emission_enabled = true
+emission = Color(0.94902, 0.87451, 0.67451, 1)
+emission_energy_multiplier = 0.37
+
+[sub_resource type="SphereMesh" id="SphereMesh_na8no"]
+material = SubResource("StandardMaterial3D_4s5fo")
+radius = 0.01
+height = 0.02
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8namq"]
 size = Vector3(31, 10.5, 31)
@@ -25,12 +60,6 @@ density = 0.0815
 albedo = Color(0.643137, 0.835294, 0.4, 1)
 emission = Color(0.443137, 0.596078, 0.223529, 1)
 edge_fade = 0.546416
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vppvn"]
-albedo_color = Color(0.917647, 0.909804, 0.972549, 1)
-emission_enabled = true
-emission = Color(0.913725, 0.541176, 0.764706, 1)
-emission_energy_multiplier = 2.54
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ai8mm"]
 size = Vector3(31, 10.5, 27)
@@ -43,16 +72,15 @@ starting_room = NodePath("Kitchen")
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0)
 script = ExtResource("1_xd5v1")
 
-[node name="Environment" type="Node3D" parent="Kitchen"]
+[node name="Environment" type="Node3D" parent="Kitchen" groups=["HideOnExit"]]
 
 [node name="podium_and_book" parent="Kitchen/Environment" instance=ExtResource("4_oll0f")]
 transform = Transform3D(0.707106, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707106, 13.5, 0, 5.5)
-visible = false
 
 [node name="Lights" type="Node3D" parent="Kitchen/Environment"]
 
 [node name="CauldronLight" type="OmniLight3D" parent="Kitchen/Environment/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 4.5, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 4.5, 0.5)
 light_color = Color(0.898039, 0.690196, 0.454902, 1)
 light_energy = 5.606
 light_indirect_energy = 3.06
@@ -86,8 +114,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 24.5, 46)
 size = Vector3(35.5, 80, 58.5)
 material = SubResource("FogMaterial_rpso0")
 
+[node name="FogVolume3" type="FogVolume" parent="Kitchen/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, -37.745, -7.935)
+size = Vector3(35.5, 80, 210.5)
+material = SubResource("FogMaterial_nvqdk")
+
 [node name="kitchen_room" parent="Kitchen/Environment" instance=ExtResource("6_uubcl")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.5, 0, 25)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Kitchen/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, 2.23517e-07)
+amount = 50
+lifetime = 4.0
+visibility_aabb = AABB(-15.5, -13.5, -10.5, 31, 27, 21)
+process_material = SubResource("ParticleProcessMaterial_7i2ln")
+draw_pass_1 = SubResource("SphereMesh_na8no")
 
 [node name="Area3D" type="Area3D" parent="Kitchen"]
 collision_mask = 4
@@ -107,10 +148,11 @@ swap_time = 1.0
 
 [node name="Camera3D" parent="Kitchen/KitchenCamera" index="0"]
 transform = Transform3D(1, -1.49012e-08, 1.46549e-14, 1.32349e-23, 1, 0, -1.02333e-22, 0, 1, 0, -1.03527, 3.8637)
+current = true
 fov = 50.0
 
 [node name="Player" parent="." instance=ExtResource("2_gsdye")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.65528, 0, 8.10642)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65528, 0, 8.10642)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("7_ao7ac")
@@ -124,98 +166,49 @@ material = SubResource("FogMaterial_ml2y0")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 0, 11)
 script = ExtResource("1_xd5v1")
 
-[node name="Environment" type="Node3D" parent="PortalRoom"]
-
-[node name="Floor" type="GridMap" parent="PortalRoom/Environment"]
-mesh_library = ExtResource("1_2k3ua")
-cell_size = Vector3(4, 8, 4)
-cell_center_y = false
-collision_layer = 2
-collision_mask = 4
-data = {
-"cells": PackedInt32Array(0, 65531, 0, 0, 65530, 0, 1, 65530, 0, 65535, 65530, 0, 65534, 65530, 0, 2, 65530, 0, 3, 65530, 0, 3, 65529, 0, 3, 65528, 0, 2, 65528, 0, 2, 65529, 0, 1, 65529, 0, 0, 65529, 0, 65535, 65529, 0, 65534, 65529, 0, 65533, 65529, 0, 0, 65528, 0, 1, 65528, 0, 65535, 65528, 0, 65534, 65528, 0, 65534, 65527, 0, 65535, 65527, 0, 65535, 65526, 0, 0, 65526, 0, 0, 65527, 0, 1, 65527, 0, 2, 65527, 0, 3, 65527, 0, 3, 65526, 0, 3, 65525, 0, 2, 65525, 0, 2, 65524, 0, 1, 65525, 0, 1, 65526, 0, 2, 65526, 0, 3, 65524, 0, 1, 65524, 0, 0, 65524, 0, 0, 65525, 0, 65535, 65525, 0, 65535, 65524, 0, 65534, 65524, 0, 65533, 65524, 0, 65534, 65525, 0, 65534, 65526, 0, 65533, 65525, 0, 65533, 65530, 0, 65533, 65528, 0, 65533, 65527, 0, 65533, 65526, 0)
-}
-
-[node name="Wall" type="GridMap" parent="PortalRoom/Environment"]
-mesh_library = ExtResource("1_2k3ua")
-cell_size = Vector3(4, 8, 4)
-cell_center_x = false
-cell_center_z = false
-data = {
-"cells": PackedInt32Array(65533, 65529, 1441794, 65533, 65526, 1441794, 65533, 65525, 1441794, 4, 65530, 1048578, 4, 65529, 1048578, 4, 65526, 1048578, 4, 65525, 1048578, 4, 65531, 1048579, 4, 65524, 655363, 65533, 65524, 1441795, 65534, 65524, 655362, 65535, 65524, 655362, 0, 65524, 655362, 1, 65524, 655362, 3, 65524, 655362, 2, 65524, 655362, 65533, 65530, 1441794, 65533, 65531, 3, 65534, 65531, 2, 65535, 65531, 2, 3, 65531, 2, 2, 65531, 2, 1, 65531, 1048587, 1, 65532, 1048578, 0, 65532, 1441794, 0, 65531, 11, 65533, 65528, 1048581, 65533, 65527, 1048581, 4, 65528, 1048581, 4, 65527, 1048581)
-}
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="PortalRoom/Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2166, 4, -32)
-material_override = SubResource("StandardMaterial3D_vppvn")
-size = Vector3(0.376289, 3, 1.19832)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="PortalRoom/Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2834, 4, -32)
-material_override = SubResource("StandardMaterial3D_vppvn")
-size = Vector3(0.376289, 3, 1.19832)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="PortalRoom/Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2166, 4, -36)
-material_override = SubResource("StandardMaterial3D_vppvn")
-size = Vector3(0.376289, 3, 1.19832)
-
-[node name="CSGBox3D6" type="CSGBox3D" parent="PortalRoom/Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.2834, 4, -36)
-material_override = SubResource("StandardMaterial3D_vppvn")
-size = Vector3(0.376289, 3, 1.19832)
+[node name="Environment" type="Node3D" parent="PortalRoom" groups=["HideOnExit"]]
 
 [node name="Lights" type="Node3D" parent="PortalRoom/Environment"]
 
-[node name="WindowLight" type="SpotLight3D" parent="PortalRoom/Environment/Lights"]
-transform = Transform3D(-0.407235, 0.705352, -0.580206, -0.290103, 0.502473, 0.81447, 0.866025, 0.5, 1.18139e-07, -11.5883, 4, -32)
-light_color = Color(0.862745, 0.435294, 0.901961, 1)
-light_energy = 15.56
-light_volumetric_fog_energy = 3.357
-shadow_enabled = true
-spot_range = 20.6677
-spot_attenuation = 1.1487
+[node name="OmniLight3D" type="OmniLight3D" parent="PortalRoom/Environment/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 3.5, -13)
+light_color = Color(0.431373, 0.776471, 0.886275, 1)
+light_energy = 6.786
+omni_range = 357.709
 
-[node name="WindowLight2" type="SpotLight3D" parent="PortalRoom/Environment/Lights"]
-transform = Transform3D(0.407235, -0.705352, 0.580206, -0.290103, 0.502473, 0.81447, -0.866026, -0.5, -1.33041e-07, 15.4117, 4, -32)
-light_color = Color(0.862745, 0.435294, 0.901961, 1)
-light_energy = 15.56
-light_volumetric_fog_energy = 3.357
-shadow_enabled = true
-spot_range = 20.6677
-spot_attenuation = 1.1487
+[node name="portal_room" parent="PortalRoom/Environment" instance=ExtResource("9_inkr1")]
+transform = Transform3D(-1, 0, -4.37114e-08, 0, 1, 0, 4.37114e-08, 0, -1, 57, 0, -6.5)
 
-[node name="WindowLight3" type="SpotLight3D" parent="PortalRoom/Environment/Lights"]
-transform = Transform3D(-0.407235, 0.705352, -0.580206, -0.290103, 0.502473, 0.81447, 0.866025, 0.5, 1.18139e-07, -11.5883, 4, -36.5)
-light_color = Color(0.862745, 0.435294, 0.901961, 1)
-light_energy = 15.56
-light_volumetric_fog_energy = 3.357
-shadow_enabled = true
-spot_range = 20.6677
-spot_attenuation = 1.1487
+[node name="Portal" parent="PortalRoom/Environment" instance=ExtResource("10_0aeb0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6, -13.5)
 
-[node name="WindowLight4" type="SpotLight3D" parent="PortalRoom/Environment/Lights"]
-transform = Transform3D(0.407235, -0.705352, 0.580206, -0.290103, 0.502473, 0.81447, -0.866026, -0.5, -1.33041e-07, 15.4117, 4, -36.5)
-light_color = Color(0.862745, 0.435294, 0.901961, 1)
-light_energy = 15.56
-light_volumetric_fog_energy = 3.357
-shadow_enabled = true
-spot_range = 20.6677
-spot_attenuation = 1.1487
+[node name="FogVolume" type="FogVolume" parent="PortalRoom/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 24.5, -42.5)
+size = Vector3(35.5, 80, 58.5)
+material = SubResource("FogMaterial_rpso0")
 
-[node name="PortalCamera" type="Camera3D" parent="PortalRoom" groups=["Camera"]]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 2, 9.5, -19.5)
-environment = ExtResource("7_ao7ac")
-script = ExtResource("3_0wltp")
-environment = ExtResource("7_ao7ac")
-swap_time = 1.0
+[node name="FogVolume2" type="FogVolume" parent="PortalRoom/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 24.5, 44)
+size = Vector3(35.5, 80, 58.5)
+material = SubResource("FogMaterial_rpso0")
+
+[node name="FogVolume3" type="FogVolume" parent="PortalRoom/Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, -37.745, -9.935)
+size = Vector3(35.5, 80, 210.5)
+material = SubResource("FogMaterial_nvqdk")
 
 [node name="Area3D" type="Area3D" parent="PortalRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -6)
 collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PortalRoom/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 5, -4)
 shape = SubResource("BoxShape3D_ai8mm")
+
+[node name="PortalCamera" parent="PortalRoom" groups=["Camera"] instance=ExtResource("6_45y2x")]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 10.5, 12)
+
+[node name="PlayerCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("11_2rq6k")]
+player = NodePath("../Player")
 
 [editable path="Kitchen/KitchenCamera"]

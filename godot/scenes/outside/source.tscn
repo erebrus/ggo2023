@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7cqfcoygdmyd"]
+[gd_scene load_steps=2 format=3 uid="uid://o0jgb1cjcf8p"]
 
 [ext_resource type="Script" path="res://scenes/outside/source.gd" id="1_bwbnv"]
 
@@ -9,12 +9,14 @@ script = ExtResource("1_bwbnv")
 billboard = 1
 shaded = true
 double_sided = false
+texture_filter = 0
 
 [node name="sprite_off" type="Sprite3D" parent="."]
 visible = false
 billboard = 1
 shaded = true
 double_sided = false
+texture_filter = 0
 
 [node name="collect_area" type="Area3D" parent="."]
 
