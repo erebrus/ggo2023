@@ -24,6 +24,7 @@ var current_source:Source
 var collecting:bool = false
 var prepping:bool = false
 var can_prep:bool = false
+var can_cook:bool = false
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -81,6 +82,9 @@ func _physics_process(delta):
 
 		source.stop_collecting()
 		source.collection_complete.disconnect(_on_collection_complete)
+		
+	if can_cook and Input.is_action_just_pressed("interact"):
+		Events.item_add_to_pot_requested.emit()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta

@@ -13,15 +13,19 @@ var panel:TextureRect
 
 
 func _ready():
-	enabled = not Global.is_ingridient_found(ingridient.name)
+	
 #	crossed_out = not enabled
 	panel = TextureRect.new()
 	panel.texture = ingridient.written_board_png
 	panel.visible = false
 	panel.z_index=10
 	add_child(panel)
-		
+	Events.pot_updated.connect(_on_pot_updated)
+	_on_pot_updated()
 	
+func _on_pot_updated():
+	enabled = not Global.is_ingridient_found(ingridient)		
+
 func _on_mouse_entered():
 	has_mouse = true
 

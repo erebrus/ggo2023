@@ -1,6 +1,5 @@
-[gd_resource type="Resource" script_class="Ingridient" load_steps=4 format=3 uid="uid://b38x64gtuqjs5"]
+[gd_resource type="Resource" script_class="Ingridient" load_steps=3 format=3 uid="uid://b38x64gtuqjs5"]
 
-[ext_resource type="Resource" uid="uid://c5pp14vx21nt8" path="res://resources/recipe/chestnut_paste.tres" id="1_4l7lv"]
 [ext_resource type="Texture2D" uid="uid://chmuattsatq4m" path="res://assets/gfx/ui/inventory/chestnut_icon.png" id="2_nlnbe"]
 [ext_resource type="Script" path="res://scenes/ui/recipes/ingridient.gd" id="3_imlkf"]
 
@@ -13,5 +12,4 @@ Autumn's gift, a nutty treat,
 Spread on bread, a feat."
 raw_icon_png = ExtResource("2_nlnbe")
 prepare_action = "Prepare"
-prepared_ingridient = ExtResource("1_4l7lv")
 required_ingridients = Array[ExtResource("3_imlkf")]([])

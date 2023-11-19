@@ -1,11 +1,13 @@
-[gd_resource type="Resource" script_class="Ingridient" load_steps=2 format=3 uid="uid://jysrkh8shg66"]
+[gd_resource type="Resource" script_class="Ingridient" load_steps=3 format=3 uid="uid://jysrkh8shg66"]
 
 [ext_resource type="Script" path="res://scenes/ui/recipes/ingridient.gd" id="1_en1l7"]
+[ext_resource type="Texture2D" uid="uid://dce4ixv51ninv" path="res://assets/gfx/ui/inventory/goat_milk.png" id="1_j1pwc"]
 
 [resource]
 script = ExtResource("1_en1l7")
 name = "Goat Milk"
 collect_time = 3.0
 haiku = ""
+raw_icon_png = ExtResource("1_j1pwc")
 prepare_action = "Prepare"
 required_ingridients = Array[ExtResource("1_en1l7")]([])

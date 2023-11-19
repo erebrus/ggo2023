@@ -39,21 +39,29 @@ func _on_button_pressed():
 	match Global.prep_table_items.size():
 		1:
 			prepare_ingridient(Global.prep_table_items[0])
-#		2:
-#			button.text = "Mix"
+		2:
+			mix_ingridients(Global.prep_table_items[0],Global.prep_table_items[1])	
 		_:
 			close()
 	
+func mix_ingridients(i1:Ingridient, i2:Ingridient):
+	var prep_i = Global.find_mix_ingridient([i1,i2])
+	Global.prep_table_items.clear()
+	if prep_i != null:
+		Global.prep_table_items.append(prep_i)	
+	else:
+		Global.show_message("Wrong ingridients")
+	close()
 	
 func prepare_ingridient(i:Ingridient):
 	if i.prepared_ingridient!=null:
 		Global.prep_table_items=[i.prepared_ingridient]
 		Global.show_message("prepared %s" % Global.prep_table_items[0].name)
-		close()
 	else:
 		Global.prep_table_items.clear()
 		Global.show_message("wrong ingridient")
-
+	close()
+		
 func close():
 	visible = false
 	Events.prep_table_close_requested.emit()

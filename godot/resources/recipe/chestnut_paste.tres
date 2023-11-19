@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Ingridient" load_steps=5 format=3 uid="uid://c5pp14vx21nt8"]
+[gd_resource type="Resource" script_class="Ingridient" load_steps=7 format=3 uid="uid://c5pp14vx21nt8"]
 
 [ext_resource type="Texture2D" uid="uid://d23dlisvej31p" path="res://assets/gfx/ui/empty_boards/board_song_chesnut_.png" id="1_3q7c5"]
 [ext_resource type="Script" path="res://scenes/ui/recipes/ingridient.gd" id="1_rox6v"]
 [ext_resource type="Texture2D" uid="uid://byxycbsedaojg" path="res://assets/gfx/ui/inventory/chestnut_paste.png" id="2_7kvxt"]
+[ext_resource type="Resource" uid="uid://b38x64gtuqjs5" path="res://resources/recipe/chestnuts.tres" id="3_4xuo4"]
 [ext_resource type="Texture2D" uid="uid://pwtp8n5s34bo" path="res://assets/gfx/ui/written_boards/chestnut_paste_poem.png" id="3_giwbh"]
+[ext_resource type="Resource" uid="uid://jysrkh8shg66" path="res://resources/recipe/goat_milk.tres" id="4_hlism"]
 
 [resource]
 script = ExtResource("1_rox6v")
@@ -16,4 +18,4 @@ empty_board_png = ExtResource("1_3q7c5")
 written_board_png = ExtResource("3_giwbh")
 raw_icon_png = ExtResource("2_7kvxt")
 prepare_action = "Prepare"
-required_ingridients = Array[ExtResource("1_rox6v")]([])
+required_ingridients = Array[ExtResource("1_rox6v")]([ExtResource("3_4xuo4"), ExtResource("4_hlism")])

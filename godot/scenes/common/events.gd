@@ -4,6 +4,8 @@ signal haiku_displayed
 signal haiku_hidden
 signal inventory_updated
 signal item_drop_requested
+signal item_add_to_pot_requested
 signal item_dropped(ingridient:Ingridient)
 signal prep_table_updated
 signal prep_table_close_requested
+signal pot_updated

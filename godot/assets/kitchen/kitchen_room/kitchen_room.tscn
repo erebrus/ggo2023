@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6jbbq5muteyp"]
+[gd_scene load_steps=11 format=3 uid="uid://b6jbbq5muteyp"]
 
 [ext_resource type="PackedScene" uid="uid://b3arss3lersu3" path="res://assets/kitchen/kitchen_room/kitchen_room.glb" id="1_cstob"]
 [ext_resource type="Script" path="res://assets/kitchen/kitchen_room/kitchen_room.gd" id="2_225tk"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_875jb"]
 size = Vector3(5, 4, 12)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d3ww4"]
+size = Vector3(4.5262, 1, 4.48387)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3m72t"]
 size = Vector3(36, 1, 32.5)
@@ -30,6 +33,12 @@ shape = SubResource("BoxShape3D_875jb")
 
 [node name="Cauldron" parent="." index="35" instance=ExtResource("2_jfhj2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -3)
+
+[node name="CauldronDetector" type="Area3D" parent="Cauldron" index="5"]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cauldron/CauldronDetector" index="0"]
+shape = SubResource("BoxShape3D_d3ww4")
 
 [node name="podium_and_book" parent="." index="36" instance=ExtResource("3_6b6rl")]
 transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 31.5, 0, -4.5)
@@ -69,3 +78,5 @@ shape = SubResource("BoxShape3D_n6ork")
 
 [connection signal="body_entered" from="Cube_005/TableDetector" to="." method="_on_table_detector_body_entered"]
 [connection signal="body_exited" from="Cube_005/TableDetector" to="." method="_on_table_detector_body_exited"]
+[connection signal="body_entered" from="Cauldron/CauldronDetector" to="." method="_on_cauldron_detector_body_entered"]
+[connection signal="body_exited" from="Cauldron/CauldronDetector" to="." method="_on_cauldron_detector_body_exited"]

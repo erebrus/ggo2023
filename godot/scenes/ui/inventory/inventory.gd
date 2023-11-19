@@ -9,6 +9,7 @@ func _ready():
 		$vbox.add_child(itemScene.instantiate())
 	Events.inventory_updated.connect(update_inventory)
 	Events.item_drop_requested.connect(on_item_drop_requested)
+	Events.item_add_to_pot_requested.connect(on_item_add_to_pot_requested)
 	update_inventory()
 
 func _process(_delta):
@@ -45,3 +46,9 @@ func update_selection():
 		var item:InventoryItem = $vbox.get_child(i)		
 		item.selected=selected_idx == i	
 	
+func on_item_add_to_pot_requested():
+	if selected_idx!=-1:
+		Global.add_ingridient_to_pot(Global.inventory[selected_idx])
+		Global.discard_item(selected_idx)
+		selected_idx=-1
+		update_selection()
