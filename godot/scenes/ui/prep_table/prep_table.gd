@@ -27,6 +27,33 @@ func update_view():
 		_:
 			button.text = "Cancel"
 
+func _process(_delta):
 
+	if visible:
+		if Input.is_action_just_pressed("ui_accept"):
+			_on_button_pressed()
+		if Input.is_action_just_pressed("ui_cancel"):
+			close()
+			
 func _on_button_pressed():
-	Input.action_press("ui_cancel")
+	match Global.prep_table_items.size():
+		1:
+			prepare_ingridient(Global.prep_table_items[0])
+#		2:
+#			button.text = "Mix"
+		_:
+			close()
+	
+	
+func prepare_ingridient(i:Ingridient):
+	if i.prepared_ingridient!=null:
+		Global.prep_table_items=[i.prepared_ingridient]
+		Global.show_message("prepared %s" % Global.prep_table_items[0].name)
+		close()
+	else:
+		Global.prep_table_items.clear()
+		Global.show_message("wrong ingridient")
+
+func close():
+	visible = false
+	Events.prep_table_close_requested.emit()

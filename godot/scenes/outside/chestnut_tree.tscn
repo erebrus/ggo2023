@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlhse54d84xqb"]
 
 [ext_resource type="PackedScene" uid="uid://o0jgb1cjcf8p" path="res://scenes/outside/source.tscn" id="1_05ggi"]
-[ext_resource type="Resource" uid="uid://c5pp14vx21nt8" path="res://resources/recipe/chestnut_paste.tres" id="2_e3si5"]
+[ext_resource type="Resource" uid="uid://b38x64gtuqjs5" path="res://resources/recipe/chestnuts.tres" id="2_5h8cp"]
 [ext_resource type="Texture2D" uid="uid://8dnjjyyu4ln5" path="res://assets/outside/outside_atlas.png" id="2_jt1l3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0put6"]
 size = Vector3(6.16477, 5.94836, 5.69522)
 
 [node name="ChestnutTree" instance=ExtResource("1_05ggi")]
-ingridient = ExtResource("2_e3si5")
+ingridient = ExtResource("2_5h8cp")
 
 [node name="sprite_on" parent="." index="0"]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)

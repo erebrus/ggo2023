@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Ingridient" load_steps=2 format=3 uid="uid://jysrkh8shg66"]
+
+[ext_resource type="Script" path="res://scenes/ui/recipes/ingridient.gd" id="1_en1l7"]
+
+[resource]
+script = ExtResource("1_en1l7")
+name = "Goat Milk"
+collect_time = 3.0
+haiku = ""
+prepare_action = "Prepare"
+required_ingridients = Array[ExtResource("1_en1l7")]([])

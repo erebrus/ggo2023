@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d23dlisvej31p" path="res://assets/gfx/ui/empty_boards/board_song_chesnut_.png" id="1_3q7c5"]
 [ext_resource type="Script" path="res://scenes/ui/recipes/ingridient.gd" id="1_rox6v"]
-[ext_resource type="Texture2D" uid="uid://chmuattsatq4m" path="res://assets/gfx/ui/inventory/chestnut_icon.png" id="2_jxupd"]
+[ext_resource type="Texture2D" uid="uid://byxycbsedaojg" path="res://assets/gfx/ui/inventory/chestnut_paste.png" id="2_7kvxt"]
 [ext_resource type="Texture2D" uid="uid://pwtp8n5s34bo" path="res://assets/gfx/ui/written_boards/chestnut_paste_poem.png" id="3_giwbh"]
 
 [resource]
@@ -14,4 +14,6 @@ Autumn's gift, a nutty treat,
 Spread on bread, a feat."
 empty_board_png = ExtResource("1_3q7c5")
 written_board_png = ExtResource("3_giwbh")
-raw_icon_png = ExtResource("2_jxupd")
+raw_icon_png = ExtResource("2_7kvxt")
+prepare_action = "Prepare"
+required_ingridients = Array[ExtResource("1_rox6v")]([])

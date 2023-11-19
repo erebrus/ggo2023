@@ -37,6 +37,9 @@ func set_billboard(enabled: bool)->void:
 
 func _ready():
 	Events.item_dropped.connect(_on_item_dropped)
+	Events.prep_table_close_requested.connect(_on_prep_table_close_requested)
+	
+	
 	var rooms = get_tree().get_nodes_in_group("Room")
 	for room in rooms:
 		room.room_entered.connect(_on_room_entered)
@@ -46,6 +49,12 @@ func _ready():
 	virtual_close_camera.z_offset = virtual_close_camera.position.z
 	target_quat = body_pivot.transform.basis
 
+func _on_prep_table_close_requested():
+	if prepping == true:		
+		for i in Global.clear_prep_table():
+			Global.add_to_inventory(i)
+		prepping = false
+			
 func _process(_delta):
 	pass
 
@@ -82,8 +91,8 @@ func _physics_process(delta):
 			Events.item_drop_requested.emit()
 			
 		# Handle Jump.
-		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
+#		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+#			velocity.y = JUMP_VELOCITY
 
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.

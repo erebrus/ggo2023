@@ -1,10 +1,11 @@
 extends Node
 
-const INVENTORY_SIZE:=4
+const INVENTORY_SIZE := 4
+const INGRIDIENT_FOLDER := "res://resources/recipe/"
 
 var inventory:Array[Ingridient]=[
-	preload("res://resources/recipe/chestnut_paste.tres"),
-	preload("res://resources/recipe/chestnut_paste.tres")
+	preload("res://resources/recipe/chestnuts.tres"),
+	preload("res://resources/recipe/goat_milk.tres")
 ]
 var prep_table_items:Array[Ingridient]=[]
 
@@ -12,9 +13,14 @@ var found_ingridients:Array[String]=[
 #	"Chestnut Paste"
 	]
 
+
+var all_ingridients:Array[Ingridient]=[]
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var ingridient_files:=DirAccess.get_files_at(INGRIDIENT_FOLDER)
+	for ifile in ingridient_files:
+		all_ingridients.append(load(INGRIDIENT_FOLDER+ifile))
+	print("init done")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

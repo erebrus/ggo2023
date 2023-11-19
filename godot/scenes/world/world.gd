@@ -21,9 +21,6 @@ func _process(delta):
 	if player.can_prep and Input.is_action_just_pressed("interact"):
 		player.prepping = true
 		$prep_table.visible = true
-	if Input.is_action_just_pressed("ui_cancel") and player.prepping == true:		
-		for i in Global.clear_prep_table():
-			Global.add_to_inventory(i)
-		$prep_table.visible = false
-		player.prepping = true
+
+		
 	
