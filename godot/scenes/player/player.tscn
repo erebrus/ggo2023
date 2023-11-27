@@ -1,12 +1,54 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgcje5nt6qvuq"]
+[gd_scene load_steps=52 format=3 uid="uid://bgcje5nt6qvuq"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_nja4j"]
 [ext_resource type="Texture2D" uid="uid://b0i1ut2h50ww0" path="res://assets/skelly/skelly_fake_sprite.png" id="2_71xhw"]
 [ext_resource type="PackedScene" uid="uid://c7nthqnfkovcn" path="res://scenes/world/world_camera.tscn" id="3_7wu01"]
+[ext_resource type="Texture2D" uid="uid://dhsh8f62yvjmv" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0000.png" id="4_886es"]
+[ext_resource type="Texture2D" uid="uid://bpkg1npitvmju" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0001.png" id="5_fvvfb"]
+[ext_resource type="Texture2D" uid="uid://bn334s005o608" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0002.png" id="6_t7n8j"]
+[ext_resource type="Texture2D" uid="uid://b0avuinxaq460" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0003.png" id="7_ei1c8"]
+[ext_resource type="Texture2D" uid="uid://cstu51mdxyroe" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0004.png" id="8_hchuk"]
+[ext_resource type="Texture2D" uid="uid://cdhrkqsx781nl" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0005.png" id="9_ctpt1"]
+[ext_resource type="Texture2D" uid="uid://c01b6lsty718f" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0006.png" id="10_wbfyc"]
+[ext_resource type="Texture2D" uid="uid://cocukav68a150" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0007.png" id="11_8ob5l"]
+[ext_resource type="Texture2D" uid="uid://u47m3ltacbby" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0008.png" id="12_xsoo0"]
+[ext_resource type="Texture2D" uid="uid://dg6fgxcv3a4uj" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0009.png" id="13_tulrg"]
+[ext_resource type="Texture2D" uid="uid://5jsyy82twkcl" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0010.png" id="14_c165w"]
+[ext_resource type="Texture2D" uid="uid://gsgann6w2olm" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0011.png" id="15_j1uof"]
+[ext_resource type="Texture2D" uid="uid://bgc4d4ons4lt8" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0012.png" id="16_vndxo"]
+[ext_resource type="Texture2D" uid="uid://cm5awqbu1pypx" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0013.png" id="17_qnbm1"]
+[ext_resource type="Texture2D" uid="uid://bm4assqlvub0p" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0014.png" id="18_to04i"]
+[ext_resource type="Texture2D" uid="uid://clp3hmj1rse66" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0015.png" id="19_sg8sb"]
+[ext_resource type="Texture2D" uid="uid://c4dsn5pvcwe5g" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0016.png" id="20_wrlgp"]
+[ext_resource type="Texture2D" uid="uid://dn8mkah57eetr" path="res://assets/gfx/skelly/SkellyIdleFrames/Idle_0017.png" id="21_ihkt5"]
+[ext_resource type="Texture2D" uid="uid://dw40m2xyedo3w" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0000.png" id="22_08sa5"]
+[ext_resource type="Texture2D" uid="uid://cd2fmisvcwxq4" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0001.png" id="23_w2yin"]
+[ext_resource type="Texture2D" uid="uid://c5ilonweoxjy3" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0002.png" id="24_137o5"]
+[ext_resource type="Texture2D" uid="uid://defmgrgdyfiye" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0003.png" id="25_fk5ae"]
+[ext_resource type="Texture2D" uid="uid://7gw5c0rgrbc1" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0004.png" id="26_45271"]
+[ext_resource type="Texture2D" uid="uid://bfljmfl1cwdpr" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0005.png" id="27_tlmc5"]
+[ext_resource type="Texture2D" uid="uid://digk452we5lq6" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0006.png" id="28_cjr1v"]
+[ext_resource type="Texture2D" uid="uid://daqwrv30jcjxk" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0007.png" id="29_iairp"]
+[ext_resource type="Texture2D" uid="uid://c4h021v1xsn5c" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0008.png" id="30_e7s80"]
+[ext_resource type="Texture2D" uid="uid://b00wvmkx168y0" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0009.png" id="31_aiy3y"]
+[ext_resource type="Texture2D" uid="uid://5sx7vt28sxln" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0010.png" id="32_r3ggu"]
+[ext_resource type="Texture2D" uid="uid://be6hvrwqkkmnw" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0011.png" id="33_r2o6p"]
+[ext_resource type="Texture2D" uid="uid://6r6ejcykg7jq" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0012.png" id="34_tc1ju"]
+[ext_resource type="Texture2D" uid="uid://v3qs67adaao6" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0013.png" id="35_dmas2"]
+[ext_resource type="Texture2D" uid="uid://3kgpvgaxq736" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0014.png" id="36_q4xg7"]
+[ext_resource type="Texture2D" uid="uid://blhvkaatrkrbt" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0015.png" id="37_2osur"]
+[ext_resource type="Texture2D" uid="uid://1fwjw453v38y" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0016.png" id="38_hgayv"]
+[ext_resource type="Texture2D" uid="uid://rcms4uvpi2t5" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0017.png" id="39_v3p2m"]
+[ext_resource type="Texture2D" uid="uid://d0b34sdgtxpy6" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0018.png" id="40_ngbj8"]
+[ext_resource type="Texture2D" uid="uid://cblea8spej16m" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0019.png" id="41_e5mpy"]
+[ext_resource type="Texture2D" uid="uid://deb27gcwx2c4v" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0020.png" id="42_3q8l1"]
+[ext_resource type="Texture2D" uid="uid://t5gvrw6b2a2b" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0021.png" id="43_mpkll"]
+[ext_resource type="Texture2D" uid="uid://bybyjem1lb8mo" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0022.png" id="44_edwlp"]
+[ext_resource type="Texture2D" uid="uid://cfad2jt3eoacn" path="res://assets/gfx/skelly/SkellyRunFrames/Run_0023.png" id="45_bx8m5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q088w"]
 radius = 1.00917
-height = 4.20519
+height = 4.55902
 
 [sub_resource type="Shader" id="Shader_ba7uu"]
 code = "// NOTE: Shader automatically converted from Godot Engine 4.1.2.stable's StandardMaterial3D.
@@ -73,13 +115,161 @@ shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 shader_parameter/texture_albedo = ExtResource("2_71xhw")
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_uljma"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_886es")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fvvfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t7n8j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ei1c8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hchuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ctpt1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wbfyc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8ob5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xsoo0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_tulrg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_c165w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_j1uof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_vndxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_qnbm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_to04i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_sg8sb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_wrlgp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ihkt5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 32.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_08sa5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_w2yin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_137o5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_fk5ae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_45271")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_tlmc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_cjr1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_iairp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_e7s80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_aiy3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_r3ggu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_r2o6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_tc1ju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_dmas2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_q4xg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_2osur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_hgayv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_v3p2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_ngbj8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_e5mpy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_3q8l1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_mpkll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_edwlp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_bx8m5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 24.0
+}]
+
+[sub_resource type="Animation" id="Animation_7obio"]
+resource_name = "idle"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vqw0y"]
+_data = {
+"idle": SubResource("Animation_7obio")
+}
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 1.25593, 0)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_nja4j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.21346, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36101, 0)
 shape = SubResource("CapsuleShape3D_q088w")
 
 [node name="BodyPivot" type="Node3D" parent="."]
@@ -99,6 +289,7 @@ allow_y_rotation = true
 
 [node name="Sprite3D" type="Sprite3D" parent="BodyPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.27157, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_xss3m")
 gi_mode = 2
 shaded = true
@@ -106,3 +297,17 @@ double_sided = false
 alpha_cut = 2
 texture_filter = 0
 texture = ExtResource("2_71xhw")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="BodyPivot"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1.86932, 0)
+gi_mode = 2
+shaded = true
+double_sided = false
+alpha_cut = 2
+sprite_frames = SubResource("SpriteFrames_uljma")
+animation = &"run"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vqw0y")
+}

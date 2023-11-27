@@ -12,3 +12,4 @@ haiku = ""
 empty_board_png = ExtResource("1_cy4n1")
 written_board_png = ExtResource("3_1kypq")
 prepare_action = "Prepare"
+required_ingridients = Array[ExtResource("1_ayr1f")]([])
